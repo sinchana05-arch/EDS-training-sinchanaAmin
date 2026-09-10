@@ -12,8 +12,8 @@
   inset: 0;
 }
 
-.hero picture,
-.hero picture img {
+.hero > div:first-child picture,
+.hero > div:first-child img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -29,7 +29,7 @@
 
 .hero h1 {
   font-size: 48px;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
 }
 
 .hero p {
