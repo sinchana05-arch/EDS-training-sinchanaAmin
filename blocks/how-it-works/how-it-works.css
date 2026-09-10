@@ -1,0 +1,144 @@
+.how-it-works {
+  padding: 80px 30px;
+  background: #fafbf7;
+  text-align: center;
+}
+
+/* Intro */
+
+.how-it-works-intro {
+  max-width: 850px;
+  margin: 0 auto 55px;
+}
+
+.how-it-works-intro h2 {
+  margin: 0 0 15px;
+  font-size: 42px;
+  color: #21483b;
+  font-weight: 700;
+}
+
+.how-it-works-intro p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #64746e;
+}
+
+/* Images */
+
+.how-it-works-images {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+  position: relative;
+}
+
+.step-image {
+  position: relative;
+}
+
+.step-image picture,
+.step-image img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+  border-radius: 35px;
+}
+
+.step-number {
+  position: absolute;
+  top: -18px;
+  left: -15px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #6aa82f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 2;
+}
+
+/* Arrows between images */
+
+.how-it-works-images > div:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -55px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 42px;
+  color: #6aa82f;
+}
+
+/* Titles */
+
+.how-it-works-titles {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+}
+
+.how-it-works-titles h3 {
+  margin: 0;
+  font-size: 26px;
+  color: #21483b;
+}
+
+/* Descriptions */
+
+.how-it-works-descriptions {
+  max-width: 1200px;
+  margin: 12px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+}
+
+.how-it-works-descriptions p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #66756f;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .how-it-works {
+    padding: 60px 20px;
+  }
+
+  .how-it-works-intro h2 {
+    font-size: 32px;
+  }
+
+  .how-it-works-images,
+  .how-it-works-titles,
+  .how-it-works-descriptions {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .how-it-works-images {
+    gap: 45px;
+  }
+
+  .how-it-works-images > div:not(:last-child)::after {
+    display: none;
+  }
+
+  .step-image picture,
+  .step-image img {
+    height: 240px;
+  }
+}
