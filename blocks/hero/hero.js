@@ -1,13 +1,14 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
-  const content = document.createElement('div');
-  content.className = 'hero-content';
+  const image = rows[0];
+  const content = rows[1];
 
-  rows.forEach((row) => {
-    content.append(row);
-  });
+  if (image) {
+    image.classList.add('hero-image');
+  }
 
-  block.innerHTML = '';
-  block.append(content);
+  if (content) {
+    content.classList.add('hero-content');
+  }
 }
