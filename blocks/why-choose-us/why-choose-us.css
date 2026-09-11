@@ -1,56 +1,273 @@
+/* =========================================
+   WHY CHOOSE US
+   ========================================= */
+
 .why-choose-us {
-  padding: 70px 30px;
+  padding: 80px 30px;
   background: #f7f9f3;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Three columns */
+/* Decorative background circles */
 
-.why-choose-us > div {
+.why-choose-us::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(107, 142, 35, 0.08);
+  top: -100px;
+  left: -80px;
+}
+
+.why-choose-us::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(47, 79, 58, 0.06);
+  bottom: -80px;
+  right: -50px;
+}
+
+
+/* =========================================
+   ROW
+   ========================================= */
+
+.why-choose-us .why-choose-us-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  max-width: 1100px;
+
+  max-width: 1150px;
   margin: 0 auto;
+
+  position: relative;
+  z-index: 1;
 }
 
-/* Cards */
 
-.why-choose-us > div > div {
+/* =========================================
+   CARD
+   ========================================= */
+
+.why-choose-us .why-choose-us-card {
   background: #ffffff;
-  padding: 35px 25px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 25px rgba(47, 79, 58, 0.10);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  padding-bottom: 30px;
+
+  position: relative;
 }
 
-/* Titles */
 
-.why-choose-us h3 {
-  margin: 0 0 15px;
+/* =========================================
+   CARD HOVER
+   ========================================= */
+
+.why-choose-us .why-choose-us-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 18px 35px rgba(47, 79, 58, 0.16);
+}
+
+
+/* =========================================
+   IMAGE
+   ========================================= */
+
+.why-choose-us .why-choose-us-card picture {
+  display: block;
+
+  width: 100%;
+
+  height: 210px;
+
+  overflow: hidden;
+}
+
+
+.why-choose-us .why-choose-us-card picture img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.5s ease;
+}
+
+
+.why-choose-us .why-choose-us-card:hover picture img {
+  transform: scale(1.06);
+}
+
+
+/* =========================================
+   ICON
+   ========================================= */
+
+.why-choose-us .why-choose-us-card::before {
+  position: absolute;
+
+  top: 175px;
+  left: 28px;
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  background: #6b8e23;
+
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+
+  border: 5px solid #ffffff;
+
+  z-index: 2;
+}
+
+
+/* Different icon for each card */
+
+.why-choose-us
+.why-choose-us-card:nth-child(1)::before {
+  content: "🍳";
+}
+
+.why-choose-us
+.why-choose-us-card:nth-child(2)::before {
+  content: "🔍";
+}
+
+.why-choose-us
+.why-choose-us-card:nth-child(3)::before {
+  content: "👨‍👩‍👧";
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.why-choose-us .why-choose-us-title {
+  margin: 40px 28px 12px;
+
   color: #2f4f3a;
-  font-size: 22px;
+
+  font-size: 25px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
 }
 
-/* Description */
 
-.why-choose-us p {
-  margin: 0;
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.why-choose-us .why-choose-us-card p {
+  margin: 0 28px;
+
   color: #5f6f64;
+
   font-size: 16px;
-  line-height: 1.6;
+
+  line-height: 1.7;
 }
 
-/* Hover */
 
-.why-choose-us > div > div:hover {
-  transform: translateY(-6px);
+/* =========================================
+   SMALL GREEN LINE
+   ========================================= */
+
+.why-choose-us .why-choose-us-card p::after {
+  content: "";
+
+  display: block;
+
+  width: 55px;
+
+  height: 5px;
+
+  margin-top: 22px;
+
+  border-radius: 10px;
+
+  background: #6b8e23;
 }
 
-/* Mobile */
 
-@media (max-width: 768px) {
-  .why-choose-us > div {
-    grid-template-columns: 1fr;
+/* =========================================
+   EMPTY CELLS
+   ========================================= */
+
+.why-choose-us .empty-cell {
+  display: none;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .why-choose-us {
+    padding: 60px 20px;
   }
+
+  .why-choose-us .why-choose-us-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .why-choose-us {
+    padding: 50px 16px;
+  }
+
+  .why-choose-us .why-choose-us-row {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .why-choose-us .why-choose-us-card picture {
+    height: 230px;
+  }
+
+  .why-choose-us .why-choose-us-title {
+    font-size: 23px;
+  }
+
 }
