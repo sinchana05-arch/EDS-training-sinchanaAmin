@@ -6,6 +6,22 @@
 }
 
 /* First row - images */
+.how-it-works h2 {
+  color: #2F4F3A;
+}
+
+.how-it-works-titles h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #2F4F3A;
+}
+
+.how-it-works-descriptions p {
+  margin: 0;
+  color: #5F6F64;
+  font-size: 16px;
+  line-height: 1.6;
+}
 
 .how-it-works > div:nth-child(1) {
   display: grid;
