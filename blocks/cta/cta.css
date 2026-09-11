@@ -1,33 +1,35 @@
-.cta {
-  padding: 80px 30px;
-  text-align: center;
-  background: #2f4f3a;
-}
-
-.cta h2 {
-  margin: 0 0 15px;
-  color: #ffffff;
-  font-size: 38px;
-}
-
-.cta p {
-  margin: 0 auto 25px;
-  max-width: 650px;
-  color: #e8eee9;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.cta a {
+/* CTA button */
+.hero a {
   display: inline-block;
+  margin-top: 24px;
   padding: 13px 28px;
-  background: #6b8e23;
+
+  background: #7f9f45;
   color: #ffffff;
-  border-radius: 8px;
+
   text-decoration: none;
+
+  font-size: 16px;
   font-weight: 600;
+
+  border-radius: 8px;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 5px 15px rgba(36, 77, 67, 0.18);
 }
 
-.cta a:hover {
-  opacity: 0.9;
+/* Hover effect */
+.hero a:hover {
+  background: #244d43;
+  color: #ffffff;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 20px rgba(36, 77, 67, 0.25);
+}
+
+/* Click effect */
+.hero a:active {
+  transform: translateY(0);
 }
