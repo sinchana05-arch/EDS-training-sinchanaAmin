@@ -1,0 +1,56 @@
+.why-choose-us {
+  padding: 70px 30px;
+  background: #f7f9f3;
+}
+
+/* Three columns */
+
+.why-choose-us > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Cards */
+
+.why-choose-us > div > div {
+  background: #ffffff;
+  padding: 35px 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+/* Titles */
+
+.why-choose-us h3 {
+  margin: 0 0 15px;
+  color: #2f4f3a;
+  font-size: 22px;
+}
+
+/* Description */
+
+.why-choose-us p {
+  margin: 0;
+  color: #5f6f64;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Hover */
+
+.why-choose-us > div > div:hover {
+  transform: translateY(-6px);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .why-choose-us > div {
+    grid-template-columns: 1fr;
+  }
+}
