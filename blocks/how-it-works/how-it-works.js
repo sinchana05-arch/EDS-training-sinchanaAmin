@@ -3,7 +3,7 @@ import './how-it-works.css';
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Intro section
+  // Introduction
   if (rows[0]) {
     rows[0].classList.add('how-it-works-intro');
   }
