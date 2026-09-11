@@ -1,35 +1,186 @@
-/* CTA button */
-.hero a {
-  display: inline-block;
-  margin-top: 24px;
-  padding: 13px 28px;
+/* =========================================
+   CTA SECTION
+   ========================================= */
 
-  background: #7f9f45;
+.cta {
+  position: relative;
+
+  margin: 60px auto;
+
+  max-width: 1200px;
+
+  padding: 70px 40px;
+
+  background: #244d43;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(36, 77, 67, 0.15);
+}
+
+
+/* Decorative circle - top left */
+
+.cta::before {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  top: -120px;
+  left: -80px;
+
+  background: rgba(127, 159, 69, 0.25);
+
+  border-radius: 50%;
+}
+
+
+/* Decorative circle - bottom right */
+
+.cta::after {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  right: -100px;
+  bottom: -150px;
+
+  background: rgba(245, 247, 237, 0.08);
+
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   CTA CONTENT
+   ========================================= */
+
+.cta > div {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   HEADING
+   ========================================= */
+
+.cta h2 {
+  margin: 0 0 15px;
+
   color: #ffffff;
+
+  font-size: 40px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.cta p {
+  max-width: 650px;
+
+  margin: 0 auto 28px;
+
+  color: #e4ead3;
+
+  font-size: 18px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CTA BUTTON
+   ========================================= */
+
+.cta a {
+  display: inline-block;
+
+  padding: 13px 30px;
+
+  background: #ffffff;
+
+  color: #244d43;
+
+  border: 2px solid #ffffff;
+
+  border-radius: 30px;
+
+  font-size: 16px;
+
+  font-weight: 600;
 
   text-decoration: none;
 
-  font-size: 16px;
-  font-weight: 600;
-
-  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 
   transition: all 0.3s ease;
-
-  box-shadow: 0 5px 15px rgba(36, 77, 67, 0.18);
 }
 
-/* Hover effect */
-.hero a:hover {
-  background: #244d43;
+
+/* =========================================
+   BUTTON HOVER
+   ========================================= */
+
+.cta a:hover {
+  background: #7f9f45;
+
   color: #ffffff;
+
+  border-color: #7f9f45;
 
   transform: translateY(-3px);
 
-  box-shadow: 0 8px 20px rgba(36, 77, 67, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
-/* Click effect */
-.hero a:active {
+
+/* =========================================
+   BUTTON ACTIVE
+   ========================================= */
+
+.cta a:active {
   transform: translateY(0);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .cta {
+    margin: 40px 18px;
+
+    padding: 50px 25px;
+
+    border-radius: 20px;
+  }
+
+  .cta h2 {
+    font-size: 30px;
+  }
+
+  .cta p {
+    font-size: 16px;
+  }
+
 }
