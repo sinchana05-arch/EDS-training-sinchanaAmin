@@ -1,0 +1,33 @@
+.cta {
+  padding: 80px 30px;
+  text-align: center;
+  background: #2f4f3a;
+}
+
+.cta h2 {
+  margin: 0 0 15px;
+  color: #ffffff;
+  font-size: 38px;
+}
+
+.cta p {
+  margin: 0 auto 25px;
+  max-width: 650px;
+  color: #e8eee9;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.cta a {
+  display: inline-block;
+  padding: 13px 28px;
+  background: #6b8e23;
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cta a:hover {
+  opacity: 0.9;
+}
