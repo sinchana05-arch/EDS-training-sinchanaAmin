@@ -4,8 +4,6 @@
   text-align: center;
 }
 
-/* Introduction */
-
 .how-it-works-intro {
   display: block !important;
   max-width: 850px;
@@ -29,34 +27,25 @@
   line-height: 1.6;
 }
 
-/* Images */
-
 .how-it-works-images {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.how-it-works-images > div {
+.step-image {
   position: relative;
-  min-width: 0;
 }
 
-.how-it-works-images picture {
-  display: block;
-}
-
-.how-it-works-images img {
-  display: block;
+.step-image img {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-radius: 24px;
+  display: block;
+  border-radius: 25px;
 }
-
-/* Numbers */
 
 .step-number {
   position: absolute;
@@ -64,49 +53,36 @@
   left: -12px;
   width: 55px;
   height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
   background: #6aaa2e;
   color: white;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   z-index: 2;
 }
 
-/* Titles */
-
 .how-it-works-titles {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
   max-width: 1100px;
   margin: 25px auto 0;
 }
 
-.how-it-works-titles > div {
-  min-width: 0;
-}
-
 .how-it-works-titles h3 {
   margin: 0;
-  color: #21483b;
   font-size: 24px;
+  color: #21483b;
 }
-
-/* Descriptions */
 
 .how-it-works-descriptions {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
   max-width: 1100px;
   margin: 10px auto 0;
-}
-
-.how-it-works-descriptions > div {
-  min-width: 0;
 }
 
 .how-it-works-descriptions p {
@@ -116,21 +92,11 @@
   line-height: 1.6;
 }
 
-/* Mobile */
-
 @media (max-width: 768px) {
   .how-it-works-images,
   .how-it-works-titles,
   .how-it-works-descriptions {
     grid-template-columns: 1fr;
-  }
-
-  .how-it-works-images {
-    gap: 30px;
-  }
-
-  .how-it-works-images img {
-    height: 240px;
   }
 
   .how-it-works-intro h2 {
