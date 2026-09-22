@@ -11,9 +11,13 @@ export default function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'recipe-tips-content';
 
+  const textWrapper = document.createElement('div');
+  textWrapper.className = 'recipe-tips-text';
+
   const heading = document.createElement('h2');
   heading.textContent = title || 'Recipe Tips';
-  wrapper.appendChild(heading);
+
+  textWrapper.appendChild(heading);
 
   const list = document.createElement('ul');
 
@@ -27,6 +31,8 @@ export default function decorate(block) {
     }
   });
 
-  wrapper.appendChild(list);
+  textWrapper.appendChild(list);
+  wrapper.appendChild(textWrapper);
+
   block.appendChild(wrapper);
 }
