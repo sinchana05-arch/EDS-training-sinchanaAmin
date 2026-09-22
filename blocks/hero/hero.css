@@ -1,48 +1,29 @@
-.hero {
-  position: relative;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 16px;
-}
-
-.hero > div:first-child {
-  position: absolute;
-  inset: 0;
-}
-
-.hero > div:first-child picture,
-.hero > div:first-child img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hero > div:nth-child(2) {
   position: relative;
   z-index: 1;
   padding: 60px;
   max-width: 600px;
-  color: white;
+  color: #2F4F3A;
 }
 
 .hero h1 {
   font-size: 48px;
-  margin: 0 0 16px;
+  margin-bottom: 16px;
+  color: #2F4F3A;
 }
 
 .hero p {
   font-size: 20px;
   line-height: 1.6;
+  color: #5F6F64;
 }
 
 .hero a {
   display: inline-block;
   margin-top: 20px;
   padding: 12px 24px;
-  background: white;
-  color: #222;
+  background: #6B8E23;
+  color: #FFFFFF;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
