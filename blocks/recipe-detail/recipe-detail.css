@@ -1,31 +1,315 @@
-.recipe-detail-info {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
+/* =========================================================
+   RECIPE DETAIL
+   ========================================================= */
+
+.recipe-detail {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+
+  margin: 35px auto;
+  padding: 0;
+
+  box-sizing: border-box;
 }
 
-.recipe-detail-info p {
-  display: inline-flex;
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.recipe-detail-layout {
+  width: 100%;
+  min-height: 420px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 35px;
+
   align-items: center;
-  justify-content: center;
 
-  margin: 0;
-  padding: 11px 16px;
+  padding: 10px 18px;
 
-  background: #ffffff;
-  color: #244d43;
+  background: #f5f7ed;
 
   border-radius: 24px;
 
-  font-size: 14px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.recipe-detail-image-wrapper {
+  width: 100%;
+  height: 400px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  box-sizing: border-box;
+}
+
+.recipe-detail-image-wrapper picture {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.recipe-detail-image-wrapper img {
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  transition: transform 0.4s ease;
+}
+
+.recipe-detail-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.recipe-detail-content {
+  width: 100%;
+
+  padding: 20px 30px 20px 5px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.recipe-detail-title {
+  margin: 0 0 20px;
+}
+
+.recipe-detail-title h1 {
+  margin: 0;
+
+  color: #244d43;
+
+  font-size: 48px;
+
+  line-height: 1.15;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.recipe-detail-description {
+  margin: 0 0 28px;
+
+  color: #61736d;
+
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   INFORMATION PILLS
+   ========================================================= */
+
+.recipe-detail-info {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: row;
+
+  flex-wrap: nowrap;
+
+  align-items: center;
+
+  gap: 10px;
+
+  overflow: visible;
+}
+
+
+/* Individual pill */
+
+.recipe-detail-info-item {
+  display: inline-flex;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  min-height: 32px;
+
+  padding: 8px 12px;
+
+  background: #eef4e8;
+
+  border: 1px solid #e0e9d9;
+
+  border-radius: 18px;
+
+  color: #244d43;
+
+  font-size: 11px;
+
+  line-height: 1;
+
   font-weight: 600;
 
   white-space: nowrap;
 
-  box-shadow: 0 4px 12px rgba(36, 77, 67, 0.08);
+  box-sizing: border-box;
+}
+
+
+/* Icon */
+
+.recipe-detail-info-icon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 14px;
+  height: 14px;
+
+  color: #244d43;
+
+  font-size: 13px;
+
+  line-height: 1;
 
   flex-shrink: 0;
+}
+
+
+/* Text */
+
+.recipe-detail-info-text {
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1000px) {
+
+  .recipe-detail-layout {
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 420px;
+  }
+
+  .recipe-detail-image-wrapper {
+    height: 400px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .recipe-detail {
+    width: calc(100% - 40px);
+  }
+
+  .recipe-detail-layout {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding: 15px;
+  }
+
+  .recipe-detail-image-wrapper {
+    height: 350px;
+  }
+
+  .recipe-detail-content {
+    padding: 10px 15px 25px;
+  }
+
+  .recipe-detail-title h1 {
+    font-size: 40px;
+  }
+
+  .recipe-detail-info {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .recipe-detail {
+    width: calc(100% - 30px);
+
+    margin: 25px auto;
+  }
+
+  .recipe-detail-layout {
+    padding: 12px;
+
+    border-radius: 18px;
+  }
+
+  .recipe-detail-image-wrapper {
+    height: 280px;
+  }
+
+  .recipe-detail-title h1 {
+    font-size: 32px;
+  }
+
+  .recipe-detail-description {
+    font-size: 16px;
+  }
+
+  .recipe-detail-info {
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+  .recipe-detail-info-item {
+    font-size: 11px;
+
+    padding: 7px 10px;
+  }
 }
