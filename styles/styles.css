@@ -1,23 +1,64 @@
+/* =========================================
+   RECIPE DETAIL PAGE LAYOUT
+   ========================================= */
+
+.recipe-detail-container {
+  width: 100%;
+}
+
+/* Ingredients + Instructions section */
 .section:has(.ingredients):has(.instructions) {
+  width: calc(100% - 64px);
   max-width: 1100px;
   margin: 35px auto;
   display: grid;
-  grid-template-columns: 0.9fr 1.3fr;
+  grid-template-columns: 0.85fr 1.35fr;
   gap: 30px;
   align-items: stretch;
+  box-sizing: border-box;
 }
 
 .section:has(.ingredients):has(.instructions) > .ingredients,
 .section:has(.ingredients):has(.instructions) > .instructions {
   width: 100%;
+  max-width: none;
   margin: 0;
   box-sizing: border-box;
 }
 
+
+/* =========================================
+   RECIPE TIPS SECTION
+   ========================================= */
+
+.section:has(.recipe-tips) {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  margin: 35px auto 50px;
+  box-sizing: border-box;
+}
+
+.section:has(.recipe-tips) > .recipe-tips {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
 @media (max-width: 800px) {
+
   .section:has(.ingredients):has(.instructions) {
+    width: calc(100% - 36px);
     grid-template-columns: 1fr;
-    margin: 25px 18px;
     gap: 25px;
+    margin: 25px auto;
+  }
+
+  .section:has(.recipe-tips) {
+    width: calc(100% - 36px);
   }
 }
