@@ -1,0 +1,73 @@
+.instructions {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 40px 45px;
+  background: #f5f7ed;
+  border-radius: 22px;
+  box-sizing: border-box;
+}
+
+/* Heading */
+.instructions h2 {
+  margin: 0 0 30px;
+  color: #244d43;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Heading underline */
+.instructions h2::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 4px;
+  margin-top: 12px;
+  background: #7f9f45;
+  border-radius: 10px;
+}
+
+/* Instructions list */
+.instructions ol {
+  margin: 0;
+  padding-left: 55px;
+  counter-reset: instruction;
+}
+
+/* Each instruction */
+.instructions li {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  color: #61736d;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Number circle */
+.instructions li::marker {
+  color: #ffffff;
+  font-weight: 700;
+  background: #7f9f45;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .instructions {
+    margin: 40px 18px;
+    padding: 30px 25px;
+  }
+
+  .instructions h2 {
+    font-size: 27px;
+  }
+
+  .instructions ol {
+    padding-left: 40px;
+  }
+
+  .instructions li {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+}
