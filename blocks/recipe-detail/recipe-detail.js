@@ -3,27 +3,9 @@ export default function decorate(block) {
 
   if (!rows.length) return;
 
-  /*
-   * Expected structure:
-   *
-   * Row 1:
-   * Image | Recipe title
-   *
-   * Row 2:
-   * Image | Description
-   *
-   * Row 3:
-   * Image | Recipe information
-   *
-   * Row 4:
-   * Image | Cuisine
-   */
+  const firstRow = rows[0];
 
-  const imageColumn = rows[0]?.children[0];
-
-  if (imageColumn) {
-    imageColumn.classList.add('recipe-detail-image');
-  }
+  const imageCell = firstRow?.children[0];
 
   const content = document.createElement('div');
   content.className = 'recipe-detail-content';
@@ -46,13 +28,6 @@ export default function decorate(block) {
     content.appendChild(rightCell);
   });
 
-  /*
-   * Keep image separately and rebuild
-   * the content area.
-   */
-
-  const firstRow = rows[0];
-
   block.innerHTML = '';
 
   const layout = document.createElement('div');
@@ -61,10 +36,12 @@ export default function decorate(block) {
   const imageWrapper = document.createElement('div');
   imageWrapper.className = 'recipe-detail-image-wrapper';
 
-  if (firstRow?.children[0]) {
-    imageWrapper.appendChild(
-      firstRow.children[0].cloneNode(true),
-    );
+  if (imageCell) {
+    const picture = imageCell.querySelector('picture');
+
+    if (picture) {
+      imageWrapper.appendChild(picture.cloneNode(true));
+    }
   }
 
   layout.appendChild(imageWrapper);
