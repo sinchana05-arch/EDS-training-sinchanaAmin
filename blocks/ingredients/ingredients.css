@@ -1,26 +1,42 @@
 .ingredients {
   width: 100%;
+  min-height: 535px;
   padding: 35px 32px;
   background: #ffffff;
   border: 1px solid #e3e9df;
   border-radius: 20px;
   box-shadow: 0 5px 18px rgba(36, 77, 67, 0.06);
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative bottom shape */
+.ingredients::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 100px;
+  left: -30px;
+  bottom: -45px;
+  background: #f5f7ed;
+  border-radius: 50%;
 }
 
 .ingredients h2 {
-  margin: 0 0 25px;
+  margin: 0 0 28px;
   color: #244d43;
   font-size: 30px;
+  line-height: 1.2;
   font-weight: 700;
 }
 
 .ingredients h2::after {
   content: "";
   display: block;
-  width: 55px;
-  height: 4px;
-  margin-top: 12px;
+  width: 60px;
+  height: 3px;
+  margin-top: 15px;
   background: #7f9f45;
   border-radius: 10px;
 }
@@ -31,10 +47,10 @@
 }
 
 .ingredients li {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   color: #61736d;
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .ingredients li::marker {
