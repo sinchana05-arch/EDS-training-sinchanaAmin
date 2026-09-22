@@ -1,6 +1,5 @@
 .ingredients {
   width: 100%;
-  height: 100%;
   margin: 0;
   padding: 35px 32px;
   background: #ffffff;
@@ -10,7 +9,6 @@
   box-sizing: border-box;
 }
 
-/* Heading */
 .ingredients h2 {
   margin: 0 0 25px;
   color: #244d43;
@@ -19,7 +17,6 @@
   font-weight: 700;
 }
 
-/* Green underline */
 .ingredients h2::after {
   content: "";
   display: block;
@@ -30,13 +27,11 @@
   border-radius: 10px;
 }
 
-/* Ingredient list */
 .ingredients ul {
   margin: 0;
   padding-left: 25px;
 }
 
-/* Ingredient */
 .ingredients li {
   margin-bottom: 15px;
   padding-left: 7px;
@@ -45,50 +40,6 @@
   line-height: 1.6;
 }
 
-/* Bullet */
 .ingredients li::marker {
   color: #7f9f45;
-  font-size: 17px;
-}
-
-/*
- * IMPORTANT:
- * Put Ingredients and Instructions
- * side by side.
- */
-.section:has(.ingredients):has(.instructions) {
-  display: grid;
-  grid-template-columns: 0.9fr 1.3fr;
-  gap: 30px;
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0;
-  align-items: stretch;
-}
-
-/* Remove default block spacing inside this section */
-.section:has(.ingredients):has(.instructions) .ingredients,
-.section:has(.ingredients):has(.instructions) .instructions {
-  margin: 0;
-}
-
-/* Mobile */
-@media (max-width: 800px) {
-  .section:has(.ingredients):has(.instructions) {
-    grid-template-columns: 1fr;
-    margin: 25px 18px;
-    gap: 25px;
-  }
-
-  .ingredients {
-    padding: 30px 25px;
-  }
-
-  .ingredients h2 {
-    font-size: 27px;
-  }
-
-  .ingredients li {
-    font-size: 16px;
-  }
 }
