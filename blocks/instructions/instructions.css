@@ -1,6 +1,5 @@
 .instructions {
   width: 100%;
-  margin: 0;
   padding: 35px 32px;
   background: #ffffff;
   border: 1px solid #e3e9df;
@@ -13,7 +12,6 @@
   margin: 0 0 25px;
   color: #244d43;
   font-size: 30px;
-  line-height: 1.2;
   font-weight: 700;
 }
 
