@@ -1,8 +1,7 @@
 .recipe-tips {
   width: 100%;
-  max-width: 1100px;
-  margin: 35px auto;
-  padding: 35px 50px;
+  min-height: 165px;
+  padding: 32px 45px;
   background: #244d43;
   border-radius: 20px;
   box-sizing: border-box;
@@ -13,20 +12,25 @@
 .recipe-tips-content {
   display: flex;
   align-items: center;
-  gap: 35px;
+  width: 100%;
+  min-height: 100px;
 }
 
 .recipe-tips-content::before {
   content: "💡";
-  width: 70px;
-  min-width: 70px;
-  height: 70px;
+  width: 90px;
+  min-width: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 38px;
-  border-right: 2px solid rgba(255, 255, 255, 0.55);
-  padding-right: 30px;
+  font-size: 45px;
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  margin-right: 40px;
+}
+
+.recipe-tips-text {
+  flex: 1;
 }
 
 .recipe-tips-content h2 {
@@ -37,10 +41,6 @@
   font-weight: 700;
 }
 
-.recipe-tips-content h2::after {
-  display: none;
-}
-
 .recipe-tips-content ul {
   margin: 0;
   padding: 0;
@@ -48,40 +48,33 @@
 }
 
 .recipe-tips-content li {
-  margin: 0 0 8px;
+  margin: 0 0 5px;
   color: #ffffff;
   font-size: 17px;
   line-height: 1.6;
 }
 
-.recipe-tips-content li::before {
-  content: "";
+/* Hide empty paragraphs if DA.live creates them */
+.recipe-tips p:empty {
+  display: none;
 }
 
 @media (max-width: 700px) {
+
   .recipe-tips {
-    margin: 30px 18px;
     padding: 30px 25px;
   }
 
   .recipe-tips-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
   }
 
   .recipe-tips-content::before {
     border-right: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.55);
-    padding-right: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    margin-right: 0;
+    margin-bottom: 20px;
     padding-bottom: 15px;
-  }
-
-  .recipe-tips-content h2 {
-    font-size: 27px;
-  }
-
-  .recipe-tips-content li {
-    font-size: 15px;
   }
 }
