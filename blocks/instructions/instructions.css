@@ -1,9 +1,9 @@
 .instructions {
   max-width: 1100px;
-  margin: 60px auto;
+  margin: 45px auto;
   padding: 40px 45px;
   background: #f5f7ed;
-  border-radius: 22px;
+  border-radius: 20px;
   box-sizing: border-box;
 }
 
@@ -11,63 +11,85 @@
 .instructions h2 {
   margin: 0 0 30px;
   color: #244d43;
-  font-size: 32px;
-  line-height: 1.2;
+  font-size: 30px;
+  line-height: 1.3;
   font-weight: 700;
 }
 
-/* Heading underline */
+/* Green underline */
 .instructions h2::after {
   content: "";
   display: block;
   width: 55px;
   height: 4px;
-  margin-top: 12px;
+  margin-top: 10px;
   background: #7f9f45;
   border-radius: 10px;
 }
 
-/* Instructions list */
+/* Remove default numbering */
 .instructions ol {
+  list-style: none;
   margin: 0;
-  padding-left: 55px;
+  padding: 0;
   counter-reset: instruction;
 }
 
 /* Each instruction */
 .instructions li {
-  position: relative;
+  counter-increment: instruction;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  column-gap: 16px;
   margin-bottom: 20px;
-  padding: 12px 15px;
   color: #61736d;
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* Number circle */
-.instructions li::marker {
-  color: #ffffff;
-  font-weight: 700;
+.instructions li::before {
+  content: counter(instruction);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   background: #7f9f45;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Last item */
+.instructions li:last-child {
+  margin-bottom: 0;
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   .instructions {
-    margin: 40px 18px;
+    margin: 35px 18px;
     padding: 30px 25px;
   }
 
   .instructions h2 {
-    font-size: 27px;
-  }
-
-  .instructions ol {
-    padding-left: 40px;
+    font-size: 26px;
   }
 
   .instructions li {
+    grid-template-columns: 38px 1fr;
+    column-gap: 12px;
     font-size: 16px;
-    margin-bottom: 15px;
+  }
+
+  .instructions li::before {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
   }
 }
