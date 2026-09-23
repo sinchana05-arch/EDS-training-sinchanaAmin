@@ -4,93 +4,70 @@
 
 .header {
   width: 100%;
-
   background: #ffffff;
-
   border-bottom: 1px solid #edf1e8;
-
   box-sizing: border-box;
-
   position: relative;
-
   z-index: 100;
 }
 
 
 /* =========================================================
-   DESKTOP HEADER CONTAINER
+   HEADER CONTAINER
    ========================================================= */
 
 .header-container {
   width: calc(100% - 40px);
-
   max-width: 1450px;
-
   min-height: 78px;
 
   margin: 0 auto;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
-  gap: 60px;
+  gap: 45px;
 
   box-sizing: border-box;
 }
 
 
 /* =========================================================
-   LEFT / LOGO
+   LOGO
    ========================================================= */
 
 .header-left {
   display: flex;
-
   align-items: center;
-
   flex-shrink: 0;
 }
 
-
 .header-logo {
   display: inline-flex;
-
   align-items: center;
-
   gap: 12px;
 
   color: #244d43;
-
   text-decoration: none;
 }
 
-
 .header-logo-icon {
   width: 48px;
-
   height: 48px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   flex-shrink: 0;
 }
 
-
 .header-logo-icon svg {
   width: 48px;
-
   height: 48px;
-
   display: block;
 }
-
 
 .header-logo-text {
   color: #244d43;
@@ -101,40 +78,32 @@
     serif;
 
   font-size: 30px;
-
   font-weight: 700;
 
   line-height: 1;
-
   white-space: nowrap;
 }
 
 
 /* =========================================================
-   CENTER / NAVIGATION
+   NAVIGATION
    ========================================================= */
 
 .header-center {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   flex: 1;
 }
 
-
 .header-nav {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
-  gap: 50px;
+  gap: 45px;
 }
-
 
 .header-nav-link {
   position: relative;
@@ -142,19 +111,13 @@
   color: #244d43;
 
   font-size: 18px;
-
   font-weight: 600;
 
   text-decoration: none;
-
   white-space: nowrap;
 
-  transition:
-    color 0.25s ease;
+  transition: color 0.25s ease;
 }
-
-
-/* Navigation underline */
 
 .header-nav-link::after {
   content: '';
@@ -162,26 +125,21 @@
   position: absolute;
 
   left: 0;
-
-  bottom: -9px;
+  bottom: -8px;
 
   width: 0;
-
   height: 2px;
 
   background: #7f9f45;
 
   border-radius: 2px;
 
-  transition:
-    width 0.25s ease;
+  transition: width 0.25s ease;
 }
-
 
 .header-nav-link:hover {
   color: #7f9f45;
 }
-
 
 .header-nav-link:hover::after {
   width: 100%;
@@ -189,27 +147,28 @@
 
 
 /* =========================================================
-   RIGHT / SEARCH
+   RIGHT SECTION
    ========================================================= */
 
 .header-right {
   display: flex;
-
   align-items: center;
 
-  gap: 15px;
+  gap: 12px;
 
   flex-shrink: 0;
 }
 
 
-.header-search {
-  width: 300px;
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
+.header-search {
+  width: 280px;
   height: 44px;
 
   display: flex;
-
   align-items: center;
 
   gap: 10px;
@@ -229,7 +188,6 @@
     box-shadow 0.25s ease;
 }
 
-
 .header-search:focus-within {
   border-color: #7f9f45;
 
@@ -238,18 +196,12 @@
     rgba(127, 159, 69, 0.10);
 }
 
-
-/* Search icon */
-
 .header-search-icon {
   width: 20px;
-
   height: 20px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   color: #7f9f45;
@@ -257,60 +209,100 @@
   flex-shrink: 0;
 }
 
-
 .header-search-icon svg {
   width: 19px;
-
   height: 19px;
-
-  display: block;
 }
-
-
-/* Search input */
 
 .header-search input {
   width: 100%;
-
   min-width: 0;
 
   padding: 0;
 
   border: 0;
-
   outline: 0;
 
   background: transparent;
 
   color: #244d43;
 
-  font-size: 16px;
-
+  font-size: 15px;
   font-family: inherit;
 }
 
-
 .header-search input::placeholder {
   color: #7b8c84;
-
-  opacity: 1;
-}
-
-
-.header-search input::-webkit-search-cancel-button {
-  cursor: pointer;
 }
 
 
 /* =========================================================
-   MOBILE MENU BUTTON
+   DESKTOP / MOBILE VIEW TOGGLE
+   ========================================================= */
+
+.header-view-toggle {
+  display: flex;
+  align-items: center;
+
+  padding: 3px;
+
+  background: #f5f7ed;
+
+  border: 1px solid #e2e9dc;
+
+  border-radius: 22px;
+
+  white-space: nowrap;
+}
+
+.header-view-button {
+  min-width: 70px;
+  height: 34px;
+
+  padding: 0 12px;
+
+  border: 0;
+
+  border-radius: 18px;
+
+  background: transparent;
+
+  color: #61736d;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.header-view-button:hover {
+  color: #244d43;
+}
+
+.header-view-button.active {
+  background: #244d43;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 2px 6px
+    rgba(36, 77, 67, 0.18);
+}
+
+
+/* =========================================================
+   HAMBURGER
    ========================================================= */
 
 .header-menu-button {
   display: none;
 
   width: 44px;
-
   height: 44px;
 
   padding: 9px;
@@ -324,18 +316,15 @@
   cursor: pointer;
 
   flex-direction: column;
-
   justify-content: center;
 
   gap: 5px;
 }
 
-
 .header-menu-button span {
   display: block;
 
   width: 23px;
-
   height: 2px;
 
   margin: 0 auto;
@@ -349,9 +338,6 @@
     opacity 0.25s ease;
 }
 
-
-/* Hamburger → X */
-
 .header.menu-open
 .header-menu-button
 span:nth-child(1) {
@@ -360,13 +346,11 @@ span:nth-child(1) {
     rotate(45deg);
 }
 
-
 .header.menu-open
 .header-menu-button
 span:nth-child(2) {
   opacity: 0;
 }
-
 
 .header.menu-open
 .header-menu-button
@@ -378,7 +362,110 @@ span:nth-child(3) {
 
 
 /* =========================================================
-   TABLET VIEW
+   FORCED DESKTOP VIEW
+   ========================================================= */
+
+/*
+ * These rules work even when the browser itself
+ * is narrow because the user selected Desktop.
+ */
+
+.header.view-desktop .header-center {
+  position: static;
+  display: flex;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.header.view-desktop .header-nav {
+  flex-direction: row;
+}
+
+.header.view-desktop .header-search {
+  width: 280px;
+}
+
+.header.view-desktop .header-search input {
+  display: block;
+}
+
+.header.view-desktop .header-menu-button {
+  display: none;
+}
+
+
+/* =========================================================
+   FORCED MOBILE VIEW
+   ========================================================= */
+
+.header.view-mobile .header-container {
+  min-height: 72px;
+}
+
+.header.view-mobile .header-center {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 72px;
+
+  display: none;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e7ece2;
+
+  box-shadow:
+    0 8px 20px
+    rgba(36, 77, 67, 0.08);
+}
+
+.header.view-mobile.menu-open .header-center {
+  display: block;
+}
+
+.header.view-mobile .header-nav {
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.header.view-mobile .header-nav-link {
+  font-size: 18px;
+}
+
+.header.view-mobile .header-search {
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.header.view-mobile .header-search input {
+  display: none;
+}
+
+.header.view-mobile .header-search-icon {
+  width: 21px;
+  height: 21px;
+}
+
+.header.view-mobile .header-menu-button {
+  display: flex;
+}
+
+
+/* =========================================================
+   TABLET
    ========================================================= */
 
 @media (max-width: 1150px) {
@@ -386,83 +473,71 @@ span:nth-child(3) {
   .header-container {
     width: calc(100% - 30px);
 
-    gap: 30px;
+    gap: 25px;
   }
-
 
   .header-nav {
-    gap: 28px;
+    gap: 25px;
   }
-
 
   .header-nav-link {
     font-size: 17px;
   }
 
-
   .header-search {
-    width: 240px;
+    width: 220px;
   }
-
 
   .header-logo-text {
     font-size: 27px;
+  }
+
+  .header-view-button {
+    min-width: 60px;
+    padding: 0 9px;
   }
 }
 
 
 /* =========================================================
-   MOBILE VIEW
+   SMALL SCREENS
    ========================================================= */
 
 @media (max-width: 800px) {
 
-  /* Header */
+  /*
+   * The toggle remains available.
+   * Therefore the user can manually choose
+   * Desktop or Mobile.
+   */
 
   .header-container {
     width: calc(100% - 24px);
-
-    min-height: 72px;
-
-    gap: 10px;
-
-    position: relative;
   }
-
-
-  /* Logo */
 
   .header-logo {
     gap: 8px;
   }
 
-
-  .header-logo-icon {
-    width: 40px;
-
-    height: 40px;
-  }
-
-
+  .header-logo-icon,
   .header-logo-icon svg {
     width: 40px;
-
     height: 40px;
   }
-
 
   .header-logo-text {
     font-size: 23px;
   }
 
 
-  /* Navigation dropdown */
+  /* Automatically make mobile layout
+     only when no manual desktop mode
+     has been selected. */
 
-  .header-center {
+  .header:not(.view-desktop) .header-center {
     position: absolute;
 
     left: 0;
-
     right: 0;
 
     top: 72px;
@@ -480,40 +555,18 @@ span:nth-child(3) {
       rgba(36, 77, 67, 0.08);
   }
 
-
-  /* Show menu */
-
-  .header.menu-open .header-center {
+  .header:not(.view-desktop).menu-open
+  .header-center {
     display: block;
   }
 
-
-  /* Navigation becomes vertical */
-
-  .header-nav {
+  .header:not(.view-desktop) .header-nav {
     flex-direction: column;
-
     gap: 20px;
   }
 
-
-  .header-nav-link {
-    font-size: 18px;
-  }
-
-
-  /* Right section */
-
-  .header-right {
-    gap: 8px;
-  }
-
-
-  /* Search becomes icon */
-
-  .header-search {
+  .header:not(.view-desktop) .header-search {
     width: 44px;
-
     height: 44px;
 
     padding: 0;
@@ -521,25 +574,14 @@ span:nth-child(3) {
     justify-content: center;
 
     border-radius: 50%;
-
-    overflow: hidden;
   }
 
-
+  .header:not(.view-desktop)
   .header-search input {
     display: none;
   }
 
-
-  .header-search-icon {
-    width: 21px;
-
-    height: 21px;
-  }
-
-
-  /* Hamburger visible */
-
+  .header:not(.view-desktop)
   .header-menu-button {
     display: flex;
   }
@@ -550,30 +592,31 @@ span:nth-child(3) {
    SMALL MOBILE
    ========================================================= */
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
 
   .header-container {
     width: calc(100% - 16px);
-  }
 
+    gap: 8px;
+  }
 
   .header-logo-text {
     font-size: 20px;
   }
 
-
   .header-logo-icon,
   .header-logo-icon svg {
     width: 36px;
-
     height: 36px;
   }
 
+  .header-view-button {
+    min-width: 55px;
 
-  .header-search,
-  .header-menu-button {
-    width: 40px;
+    height: 30px;
 
-    height: 40px;
+    padding: 0 7px;
+
+    font-size: 10px;
   }
 }

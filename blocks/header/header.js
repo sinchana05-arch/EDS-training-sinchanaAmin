@@ -1,6 +1,6 @@
 export default function decorate(block) {
   /* =========================
-     MAIN HEADER CONTAINER
+     MAIN HEADER
      ========================= */
 
   const header = document.createElement('div');
@@ -21,7 +21,6 @@ export default function decorate(block) {
 
   logoIcon.innerHTML = `
     <svg viewBox="0 0 64 64" aria-hidden="true">
-
       <path
         d="M31 56C18 48 10 38 12 25
         C13 16 20 9 31 6
@@ -45,7 +44,6 @@ export default function decorate(block) {
         stroke-width="3"
         stroke-linecap="round"
       />
-
     </svg>
   `;
 
@@ -76,7 +74,7 @@ export default function decorate(block) {
     },
     {
       text: 'About Us',
-      href: 'https://main--eds-training-sinchanaamin--sinchana05-arch.aem.page/aboutus',
+      href: '/about-us',
     },
     {
       text: 'Contact',
@@ -105,12 +103,10 @@ export default function decorate(block) {
   search.setAttribute('role', 'search');
 
   const searchIcon = document.createElement('span');
-
   searchIcon.className = 'header-search-icon';
 
   searchIcon.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-
       <circle
         cx="11"
         cy="11"
@@ -127,7 +123,6 @@ export default function decorate(block) {
         stroke-width="2"
         stroke-linecap="round"
       />
-
     </svg>
   `;
 
@@ -135,7 +130,10 @@ export default function decorate(block) {
 
   searchInput.type = 'search';
   searchInput.placeholder = 'Search recipes...';
-  searchInput.setAttribute('aria-label', 'Search recipes');
+  searchInput.setAttribute(
+    'aria-label',
+    'Search recipes',
+  );
 
   search.appendChild(searchIcon);
   search.appendChild(searchInput);
@@ -148,7 +146,6 @@ export default function decorate(block) {
   const menuButton = document.createElement('button');
 
   menuButton.className = 'header-menu-button';
-
   menuButton.type = 'button';
 
   menuButton.setAttribute(
@@ -207,6 +204,149 @@ export default function decorate(block) {
   });
 
 
+  /* =========================================================
+     VIEW TOGGLE
+     ========================================================= */
+
+  const viewToggle = document.createElement('div');
+
+  viewToggle.className = 'header-view-toggle';
+
+  viewToggle.setAttribute(
+    'aria-label',
+    'Choose header view',
+  );
+
+
+  /* Desktop button */
+
+  const desktopButton = document.createElement('button');
+
+  desktopButton.type = 'button';
+
+  desktopButton.className =
+    'header-view-button header-view-desktop';
+
+  desktopButton.textContent = 'Desktop';
+
+  desktopButton.setAttribute(
+    'aria-label',
+    'Switch to desktop view',
+  );
+
+
+  /* Mobile button */
+
+  const mobileButton = document.createElement('button');
+
+  mobileButton.type = 'button';
+
+  mobileButton.className =
+    'header-view-button header-view-mobile';
+
+  mobileButton.textContent = 'Mobile';
+
+  mobileButton.setAttribute(
+    'aria-label',
+    'Switch to mobile view',
+  );
+
+
+  viewToggle.appendChild(desktopButton);
+  viewToggle.appendChild(mobileButton);
+
+
+  /* =========================
+     VIEW FUNCTIONS
+     ========================= */
+
+  const setView = (view) => {
+    header.classList.remove(
+      'view-desktop',
+      'view-mobile',
+    );
+
+    header.classList.add(
+      view === 'mobile'
+        ? 'view-mobile'
+        : 'view-desktop',
+    );
+
+    desktopButton.classList.toggle(
+      'active',
+      view === 'desktop',
+    );
+
+    mobileButton.classList.toggle(
+      'active',
+      view === 'mobile',
+    );
+
+    desktopButton.setAttribute(
+      'aria-pressed',
+      String(view === 'desktop'),
+    );
+
+    mobileButton.setAttribute(
+      'aria-pressed',
+      String(view === 'mobile'),
+    );
+
+    localStorage.setItem(
+      'recipeFinderHeaderView',
+      view,
+    );
+
+    /* Close mobile menu when changing view */
+
+    header.classList.remove('menu-open');
+
+    menuButton.setAttribute(
+      'aria-expanded',
+      'false',
+    );
+  };
+
+
+  /* =========================
+     TOGGLE EVENTS
+     ========================= */
+
+  desktopButton.addEventListener(
+    'click',
+    () => {
+      setView('desktop');
+    },
+  );
+
+  mobileButton.addEventListener(
+    'click',
+    () => {
+      setView('mobile');
+    },
+  );
+
+
+  /* =========================
+     INITIAL VIEW
+     ========================= */
+
+  const savedView =
+    localStorage.getItem(
+      'recipeFinderHeaderView',
+    );
+
+  if (savedView === 'desktop' || savedView === 'mobile') {
+    setView(savedView);
+  } else {
+    setView(
+      window.innerWidth <= 800
+        ? 'mobile'
+        : 'desktop',
+    );
+  }
+
+
   /* =========================
      HEADER SECTIONS
      ========================= */
@@ -227,6 +367,7 @@ export default function decorate(block) {
   right.className = 'header-right';
 
   right.appendChild(search);
+  right.appendChild(viewToggle);
   right.appendChild(menuButton);
 
 
@@ -237,7 +378,6 @@ export default function decorate(block) {
   header.appendChild(left);
   header.appendChild(center);
   header.appendChild(right);
-
 
   block.innerHTML = '';
 
