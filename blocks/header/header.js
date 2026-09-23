@@ -1,171 +1,310 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+export default function decorate(block) {
+  /*
+   * ---------------------------------------------------------
+   * HEADER CONTAINER
+   * ---------------------------------------------------------
+   */
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+  const header = document.createElement('div');
+  header.className = 'header-container';
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
-}
 
-function closeOnFocusLost(e) {
-  const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    if (!navSections) return;
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
-    }
-  }
-}
+  /*
+   * ---------------------------------------------------------
+   * LOGO
+   * ---------------------------------------------------------
+   */
 
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
+  const logo = document.createElement('a');
 
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
+  logo.className = 'header-logo';
 
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
-function toggleAllNavSections(sections, expanded = false) {
-  if (!sections) return;
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-  });
-}
+  logo.href = '/';
 
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  if (navSections) {
-    const navDrops = navSections.querySelectorAll('.nav-drop');
-    if (isDesktop.matches) {
-      navDrops.forEach((drop) => {
-        if (!drop.hasAttribute('tabindex')) {
-          drop.setAttribute('tabindex', 0);
-          drop.addEventListener('focus', focusNavSection);
-        }
-      });
-    } else {
-      navDrops.forEach((drop) => {
-        drop.removeAttribute('tabindex');
-        drop.removeEventListener('focus', focusNavSection);
-      });
-    }
-  }
+  logo.setAttribute('aria-label', 'Recipe Finder Home');
 
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
-  }
-}
 
-/**
- * loads and decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
-export default async function decorate(block) {
-  // load nav as fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
+  /*
+   * Leaf logo
+   */
 
-  // decorate nav DOM
-  block.textContent = '';
+  const logoIcon = document.createElement('span');
+
+  logoIcon.className = 'header-logo-icon';
+
+  logoIcon.innerHTML = `
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path
+        d="M31 56C18 48 10 38 12 25
+        C13 16 20 9 31 6
+        C42 10 49 18 50 28
+        C51 40 43 50 31 56Z"
+        fill="#7f9f45"
+      />
+
+      <path
+        d="M31 55C31 40 31 25 39 14"
+        fill="none"
+        stroke="#244d43"
+        stroke-width="4"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M30 39C24 34 19 29 17 23"
+        fill="none"
+        stroke="#244d43"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    </svg>
+  `;
+
+
+  /*
+   * Logo text
+   */
+
+  const logoText = document.createElement('span');
+
+  logoText.className = 'header-logo-text';
+
+  logoText.textContent = 'Recipe Finder';
+
+
+  logo.appendChild(logoIcon);
+
+  logo.appendChild(logoText);
+
+
+  /*
+   * ---------------------------------------------------------
+   * NAVIGATION
+   * ---------------------------------------------------------
+   */
+
   const nav = document.createElement('nav');
-  nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
+  nav.className = 'header-nav';
+
+  nav.setAttribute('aria-label', 'Main navigation');
+
+
+  /*
+   * Navigation links
+   */
+
+  const links = [
+    {
+      text: 'Home',
+      href: '/',
+    },
+    {
+      text: 'Recipes',
+      href: '/recipes',
+    },
+    {
+      text: 'About Us',
+      href: '/about-us',
+    },
+    {
+      text: 'Contact',
+      href: '/contact',
+    },
+  ];
+
+
+  links.forEach((item) => {
+    const link = document.createElement('a');
+
+    link.href = item.href;
+
+    link.textContent = item.text;
+
+    link.className = 'header-nav-link';
+
+    nav.appendChild(link);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
 
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
-    });
-  }
+  /*
+   * ---------------------------------------------------------
+   * SEARCH
+   * ---------------------------------------------------------
+   */
 
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  const search = document.createElement('form');
 
-  const navWrapper = document.createElement('div');
-  navWrapper.className = 'nav-wrapper';
-  navWrapper.append(nav);
-  block.append(navWrapper);
+  search.className = 'header-search';
+
+  search.setAttribute('role', 'search');
+
+
+  /*
+   * Search icon
+   */
+
+  const searchIcon = document.createElement('span');
+
+  searchIcon.className = 'header-search-icon';
+
+  searchIcon.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle
+        cx="11"
+        cy="11"
+        r="6.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+      <path
+        d="M16 16L21 21"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  `;
+
+
+  /*
+   * Search input
+   */
+
+  const searchInput = document.createElement('input');
+
+  searchInput.type = 'search';
+
+  searchInput.placeholder = 'Search recipes...';
+
+  searchInput.setAttribute(
+    'aria-label',
+    'Search recipes',
+  );
+
+
+  search.appendChild(searchIcon);
+
+  search.appendChild(searchInput);
+
+
+  /*
+   * ---------------------------------------------------------
+   * MOBILE MENU BUTTON
+   * ---------------------------------------------------------
+   */
+
+  const menuButton = document.createElement('button');
+
+  menuButton.className = 'header-menu-button';
+
+  menuButton.type = 'button';
+
+  menuButton.setAttribute(
+    'aria-label',
+    'Open navigation menu',
+  );
+
+  menuButton.setAttribute(
+    'aria-expanded',
+    'false',
+  );
+
+  menuButton.innerHTML = `
+    <span></span>
+    <span></span>
+    <span></span>
+  `;
+
+
+  /*
+   * ---------------------------------------------------------
+   * MOBILE MENU
+   * ---------------------------------------------------------
+   */
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = header.classList.toggle(
+      'menu-open',
+    );
+
+    menuButton.setAttribute(
+      'aria-expanded',
+      String(isOpen),
+    );
+  });
+
+
+  /*
+   * ---------------------------------------------------------
+   * SEARCH SUBMIT
+   * ---------------------------------------------------------
+   */
+
+  search.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const query = searchInput.value.trim();
+
+    if (!query) {
+      return;
+    }
+
+    /*
+     * Change this URL later if your recipe
+     * search page uses a different path.
+     */
+
+    window.location.href =
+      `/recipes?search=${encodeURIComponent(query)}`;
+  });
+
+
+  /*
+   * ---------------------------------------------------------
+   * BUILD HEADER
+   * ---------------------------------------------------------
+   */
+
+  const left = document.createElement('div');
+
+  left.className = 'header-left';
+
+  left.appendChild(logo);
+
+
+  const center = document.createElement('div');
+
+  center.className = 'header-center';
+
+  center.appendChild(nav);
+
+
+  const right = document.createElement('div');
+
+  right.className = 'header-right';
+
+  right.appendChild(search);
+
+  right.appendChild(menuButton);
+
+
+  header.appendChild(left);
+
+  header.appendChild(center);
+
+  header.appendChild(right);
+
+
+  /*
+   * ---------------------------------------------------------
+   * CLEAN ORIGINAL BLOCK
+   * ---------------------------------------------------------
+   */
+
+  block.innerHTML = '';
+
+  block.appendChild(header);
 }
