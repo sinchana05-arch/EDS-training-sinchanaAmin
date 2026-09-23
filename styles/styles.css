@@ -659,3 +659,242 @@ body.view-desktop .header-menu-button {
 body.view-desktop .hero {
   min-height: 500px;
 }
+
+/* =====================================================
+   MANUAL MOBILE VIEW
+   ===================================================== */
+
+body.view-mobile {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+body.view-mobile .header-container {
+  width: calc(100% - 24px);
+  min-height: 70px;
+  gap: 10px;
+}
+
+body.view-mobile .header-logo-text {
+  font-size: 22px;
+}
+
+body.view-mobile .header-logo-icon,
+body.view-mobile .header-logo-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+body.view-mobile .header-center {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  display: none;
+  padding: 25px;
+  background: #fff;
+  border-bottom: 1px solid #e7ece2;
+  box-shadow: 0 8px 20px rgba(36, 77, 67, 0.08);
+}
+
+body.view-mobile .header.menu-open .header-center {
+  display: block;
+}
+
+body.view-mobile .header-nav {
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.view-mobile .header-nav-link {
+  font-size: 18px;
+}
+
+body.view-mobile .header-search {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+body.view-mobile .header-search input {
+  display: none;
+}
+
+body.view-mobile .header-menu-button {
+  display: block;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+body.view-mobile .hero {
+  min-height: 420px;
+  border-radius: 18px;
+}
+
+body.view-mobile .hero > div:nth-child(2) {
+  padding: 30px;
+  max-width: 100%;
+}
+
+body.view-mobile .hero h1 {
+  font-size: 34px;
+}
+
+body.view-mobile .hero p {
+  font-size: 16px;
+}
+
+/* =====================================================
+   RECIPE DETAIL
+   ===================================================== */
+
+body.view-mobile .recipe-detail {
+  width: calc(100% - 30px);
+  margin: 25px auto;
+}
+
+body.view-mobile .recipe-detail-layout {
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 12px;
+  border-radius: 18px;
+}
+
+body.view-mobile .recipe-detail-image-wrapper {
+  height: 280px;
+}
+
+body.view-mobile .recipe-detail-content {
+  padding: 10px 15px 25px;
+}
+
+body.view-mobile .recipe-detail-title h1 {
+  font-size: 32px;
+}
+
+body.view-mobile .recipe-detail-description {
+  font-size: 16px;
+}
+
+body.view-mobile .recipe-detail-info {
+  flex-wrap: wrap;
+}
+
+body.view-mobile .recipe-detail-info-item {
+  font-size: 11px;
+  padding: 7px 10px;
+}
+
+/* =====================================================
+   INGREDIENTS + INSTRUCTIONS
+   ===================================================== */
+
+body.view-mobile .section:has(.ingredients):has(.instructions) {
+  width: calc(100% - 36px);
+  max-width: none;
+  margin: 25px auto;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* =====================================================
+   WHY CHOOSE US
+   ===================================================== */
+
+body.view-mobile .why-choose-us {
+  padding: 45px 18px;
+}
+
+body.view-mobile .why-choose-us-cards {
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+body.view-mobile .why-choose-us-image {
+  height: 220px;
+}
+
+body.view-mobile .why-choose-us-title {
+  font-size: 22px;
+}
+
+/* =====================================================
+   CTA
+   ===================================================== */
+
+body.view-mobile .cta {
+  margin: 40px 18px;
+  padding: 50px 25px;
+  border-radius: 20px;
+}
+
+body.view-mobile .cta h2 {
+  font-size: 30px;
+}
+
+body.view-mobile .cta p {
+  font-size: 16px;
+}
+
+/* =====================================================
+   INGREDIENTS
+   ===================================================== */
+
+body.view-mobile .ingredients {
+  padding: 25px 20px;
+}
+
+body.view-mobile .ingredients h2 {
+  font-size: 25px;
+}
+
+body.view-mobile .ingredients li {
+  font-size: 15px;
+}
+
+/* =====================================================
+   INSTRUCTIONS
+   ===================================================== */
+
+body.view-mobile .instructions {
+  padding: 25px 20px;
+  border-radius: 18px;
+}
+
+body.view-mobile .instructions-heading h2 {
+  font-size: 25px;
+}
+
+body.view-mobile .instructions-content ol.instructions-list > li {
+  grid-template-columns: 36px 1fr;
+  column-gap: 12px;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+body.view-mobile .instructions-content ol.instructions-list > li::before {
+  width: 34px;
+  height: 34px;
+  font-size: 13px;
+}
+
+body.view-mobile .instructions-content ol.instructions-list > li > p:first-child {
+  font-size: 15px;
+}
+
+/* =====================================================
+   RECIPE TIPS
+   ===================================================== */
+
+body.view-mobile .section:has(.recipe-tips) {
+  width: calc(100% - 36px);
+  margin: 25px auto 40px;
+}
