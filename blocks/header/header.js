@@ -2,9 +2,9 @@ export default function decorate(block) {
   const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
 
-  /* =========================
+  /* ==========================================
      LOGO
-     ========================= */
+     ========================================== */
 
   const logo = document.createElement('a');
   logo.className = 'header-logo';
@@ -14,9 +14,31 @@ export default function decorate(block) {
   logoIcon.className = 'header-logo-icon';
 
   logoIcon.innerHTML = `
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M10 36C15 24 25 14 39 10C38 25 29 37 16 40C14 38 12 37 10 36Z"></path>
-      <path d="M10 36C18 29 25 23 34 16"></path>
+    <svg viewBox="0 0 60 60" aria-hidden="true">
+      <path
+        class="leaf-shape"
+        d="M12 43C10 27 17 12 43 7C47 29 37 47 19 51C16 49 14 46 12 43Z">
+      </path>
+
+      <path
+        class="leaf-line"
+        d="M14 48C23 38 31 28 39 17">
+      </path>
+
+      <path
+        class="leaf-line"
+        d="M22 38L18 27">
+      </path>
+
+      <path
+        class="leaf-line"
+        d="M27 32L39 31">
+      </path>
+
+      <path
+        class="leaf-line"
+        d="M32 25L29 17">
+      </path>
     </svg>
   `;
 
@@ -27,14 +49,14 @@ export default function decorate(block) {
   logo.appendChild(logoIcon);
   logo.appendChild(logoText);
 
-  /* =========================
+  /* ==========================================
      NAVIGATION
-     ========================= */
+     ========================================== */
 
   const nav = document.createElement('nav');
   nav.className = 'header-nav';
 
-  const links = [
+  const navItems = [
     {
       text: 'Home',
       href: '/',
@@ -44,8 +66,8 @@ export default function decorate(block) {
       href: '/recipes',
     },
     {
-      text: 'About',
-      href: '/about-us',
+      text: 'About Us',
+      href: 'https://main--eds-training-sinchanaamin--sinchana05-arch.aem.page/aboutus',
     },
     {
       text: 'Contact',
@@ -53,7 +75,7 @@ export default function decorate(block) {
     },
   ];
 
-  links.forEach((item) => {
+  navItems.forEach((item) => {
     const link = document.createElement('a');
 
     link.className = 'header-nav-link';
@@ -63,9 +85,9 @@ export default function decorate(block) {
     nav.appendChild(link);
   });
 
-  /* =========================
+  /* ==========================================
      SEARCH
-     ========================= */
+     ========================================== */
 
   const searchForm = document.createElement('form');
   searchForm.className = 'header-search';
@@ -74,18 +96,24 @@ export default function decorate(block) {
 
   searchInput.type = 'search';
   searchInput.placeholder = 'Search recipes...';
-  searchInput.setAttribute('aria-label', 'Search recipes');
+  searchInput.setAttribute(
+    'aria-label',
+    'Search recipes',
+  );
 
   const searchButton = document.createElement('button');
 
   searchButton.type = 'submit';
   searchButton.className = 'header-search-button';
-  searchButton.setAttribute('aria-label', 'Search');
+  searchButton.setAttribute(
+    'aria-label',
+    'Search',
+  );
 
   searchButton.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="10.5" cy="10.5" r="6"></circle>
-      <path d="M15 15L20 20"></path>
+      <circle cx="10.5" cy="10.5" r="6.5"></circle>
+      <path d="M15.5 15.5L21 21"></path>
     </svg>
   `;
 
@@ -103,9 +131,9 @@ export default function decorate(block) {
     }
   });
 
-  /* =========================
+  /* ==========================================
      DESKTOP / MOBILE TOGGLE
-     ========================= */
+     ========================================== */
 
   const viewToggle = document.createElement('div');
   viewToggle.className = 'view-toggle';
@@ -113,40 +141,50 @@ export default function decorate(block) {
   const desktopButton = document.createElement('button');
 
   desktopButton.type = 'button';
-  desktopButton.className = 'view-button desktop-button';
+  desktopButton.className =
+    'view-button desktop-button';
   desktopButton.textContent = 'Desktop';
 
   const mobileButton = document.createElement('button');
 
   mobileButton.type = 'button';
-  mobileButton.className = 'view-button mobile-button';
+  mobileButton.className =
+    'view-button mobile-button';
   mobileButton.textContent = 'Mobile';
 
   viewToggle.appendChild(desktopButton);
   viewToggle.appendChild(mobileButton);
 
-  /* =========================
-     MOBILE MENU
-     ========================= */
+  /* ==========================================
+     MOBILE MENU BUTTON
+     ========================================== */
 
   const menuButton = document.createElement('button');
 
   menuButton.type = 'button';
   menuButton.className = 'header-menu-button';
-  menuButton.setAttribute('aria-label', 'Open menu');
-  menuButton.setAttribute('aria-expanded', 'false');
+
+  menuButton.setAttribute(
+    'aria-label',
+    'Open menu',
+  );
+
+  menuButton.setAttribute(
+    'aria-expanded',
+    'false',
+  );
 
   menuButton.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 7H20"></path>
+      <path d="M4 6H20"></path>
       <path d="M4 12H20"></path>
-      <path d="M4 17H20"></path>
+      <path d="M4 18H20"></path>
     </svg>
   `;
 
-  /* =========================
-     VIEW SWITCH
-     ========================= */
+  /* ==========================================
+     VIEW CHANGE
+     ========================================== */
 
   function changeView(view) {
     document.body.classList.remove(
@@ -154,7 +192,9 @@ export default function decorate(block) {
       'view-mobile',
     );
 
-    document.body.classList.add(`view-${view}`);
+    document.body.classList.add(
+      `view-${view}`,
+    );
 
     desktopButton.classList.remove('active');
     mobileButton.classList.remove('active');
@@ -162,7 +202,9 @@ export default function decorate(block) {
     if (view === 'desktop') {
       desktopButton.classList.add('active');
 
-      nav.classList.remove('mobile-menu-open');
+      nav.classList.remove(
+        'mobile-menu-open',
+      );
 
       menuButton.setAttribute(
         'aria-expanded',
@@ -175,31 +217,42 @@ export default function decorate(block) {
     }
   }
 
-  desktopButton.addEventListener('click', () => {
-    changeView('desktop');
-  });
+  desktopButton.addEventListener(
+    'click',
+    () => {
+      changeView('desktop');
+    },
+  );
 
-  mobileButton.addEventListener('click', () => {
-    changeView('mobile');
-  });
+  mobileButton.addEventListener(
+    'click',
+    () => {
+      changeView('mobile');
+    },
+  );
 
-  /* =========================
-     MOBILE MENU CLICK
-     ========================= */
+  /* ==========================================
+     MOBILE MENU
+     ========================================== */
 
-  menuButton.addEventListener('click', () => {
-    const isOpen =
-      nav.classList.toggle('mobile-menu-open');
+  menuButton.addEventListener(
+    'click',
+    () => {
+      const isOpen =
+        nav.classList.toggle(
+          'mobile-menu-open',
+        );
 
-    menuButton.setAttribute(
-      'aria-expanded',
-      isOpen ? 'true' : 'false',
-    );
-  });
+      menuButton.setAttribute(
+        'aria-expanded',
+        isOpen ? 'true' : 'false',
+      );
+    },
+  );
 
-  /* =========================
+  /* ==========================================
      BUILD HEADER
-     ========================= */
+     ========================================== */
 
   headerContainer.appendChild(logo);
   headerContainer.appendChild(nav);
@@ -210,6 +263,6 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.appendChild(headerContainer);
 
-  /* Default */
+  /* Desktop is default */
   changeView('desktop');
 }
