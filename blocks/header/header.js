@@ -1,52 +1,93 @@
 export default function decorate(block) {
-  // -----------------------------
-  // Create Header Container
-  // -----------------------------
   const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
 
-  // -----------------------------
-  // Logo
-  // -----------------------------
+  /* =========================
+     LOGO
+     ========================= */
+
   const logo = document.createElement('a');
   logo.className = 'header-logo';
   logo.href = '/';
-  logo.textContent = 'Recipe Finder';
 
-  // -----------------------------
-  // Navigation
-  // -----------------------------
+  const logoIcon = document.createElement('span');
+  logoIcon.className = 'header-logo-icon';
+
+  logoIcon.innerHTML = `
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M10 36C15 24 25 14 39 10C38 25 29 37 16 40C14 38 12 37 10 36Z"></path>
+      <path d="M10 36C18 29 25 23 34 16"></path>
+    </svg>
+  `;
+
+  const logoText = document.createElement('span');
+  logoText.className = 'header-logo-text';
+  logoText.textContent = 'Recipe Finder';
+
+  logo.appendChild(logoIcon);
+  logo.appendChild(logoText);
+
+  /* =========================
+     NAVIGATION
+     ========================= */
+
   const nav = document.createElement('nav');
   nav.className = 'header-nav';
 
-  const navLinks = [
-    { text: 'Home', href: '/' },
-    { text: 'Recipes', href: '/recipes' },
-    { text: 'About Us', href: '/about-us' },
-    { text: 'Contact', href: '/contact' },
+  const links = [
+    {
+      text: 'Home',
+      href: '/',
+    },
+    {
+      text: 'Recipes',
+      href: '/recipes',
+    },
+    {
+      text: 'About',
+      href: '/about-us',
+    },
+    {
+      text: 'Contact',
+      href: '/contact',
+    },
   ];
 
-  navLinks.forEach((item) => {
+  links.forEach((item) => {
     const link = document.createElement('a');
+
+    link.className = 'header-nav-link';
     link.href = item.href;
     link.textContent = item.text;
+
     nav.appendChild(link);
   });
 
-  // -----------------------------
-  // Search
-  // -----------------------------
+  /* =========================
+     SEARCH
+     ========================= */
+
   const searchForm = document.createElement('form');
   searchForm.className = 'header-search';
 
   const searchInput = document.createElement('input');
+
   searchInput.type = 'search';
   searchInput.placeholder = 'Search recipes...';
   searchInput.setAttribute('aria-label', 'Search recipes');
 
   const searchButton = document.createElement('button');
+
   searchButton.type = 'submit';
-  searchButton.textContent = 'Search';
+  searchButton.className = 'header-search-button';
+  searchButton.setAttribute('aria-label', 'Search');
+
+  searchButton.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="10.5" cy="10.5" r="6"></circle>
+      <path d="M15 15L20 20"></path>
+    </svg>
+  `;
 
   searchForm.appendChild(searchInput);
   searchForm.appendChild(searchButton);
@@ -54,74 +95,86 @@ export default function decorate(block) {
   searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const searchValue = searchInput.value.trim();
+    const value = searchInput.value.trim();
 
-    if (searchValue) {
-      window.location.href = `/recipes?search=${encodeURIComponent(searchValue)}`;
+    if (value) {
+      window.location.href =
+        `/recipes?search=${encodeURIComponent(value)}`;
     }
   });
 
-  // -----------------------------
-  // View Toggle
-  // -----------------------------
+  /* =========================
+     DESKTOP / MOBILE TOGGLE
+     ========================= */
+
   const viewToggle = document.createElement('div');
   viewToggle.className = 'view-toggle';
 
   const desktopButton = document.createElement('button');
+
   desktopButton.type = 'button';
-  desktopButton.className = 'view-toggle-button desktop-toggle';
+  desktopButton.className = 'view-button desktop-button';
   desktopButton.textContent = 'Desktop';
 
   const mobileButton = document.createElement('button');
+
   mobileButton.type = 'button';
-  mobileButton.className = 'view-toggle-button mobile-toggle';
+  mobileButton.className = 'view-button mobile-button';
   mobileButton.textContent = 'Mobile';
 
   viewToggle.appendChild(desktopButton);
   viewToggle.appendChild(mobileButton);
 
-  // -----------------------------
-  // Mobile Menu Button
-  // -----------------------------
+  /* =========================
+     MOBILE MENU
+     ========================= */
+
   const menuButton = document.createElement('button');
+
   menuButton.type = 'button';
-  menuButton.className = 'menu-button';
+  menuButton.className = 'header-menu-button';
   menuButton.setAttribute('aria-label', 'Open menu');
-  menuButton.innerHTML = '☰';
+  menuButton.setAttribute('aria-expanded', 'false');
 
-  // -----------------------------
-  // Change Entire Page View
-  // -----------------------------
+  menuButton.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7H20"></path>
+      <path d="M4 12H20"></path>
+      <path d="M4 17H20"></path>
+    </svg>
+  `;
+
+  /* =========================
+     VIEW SWITCH
+     ========================= */
+
   function changeView(view) {
-    // Remove previous view classes
-    document.body.classList.remove('view-desktop');
-    document.body.classList.remove('view-mobile');
+    document.body.classList.remove(
+      'view-desktop',
+      'view-mobile',
+    );
 
-    // Add selected view class
     document.body.classList.add(`view-${view}`);
 
-    // Update active toggle button
     desktopButton.classList.remove('active');
     mobileButton.classList.remove('active');
 
     if (view === 'desktop') {
       desktopButton.classList.add('active');
 
-      // Close mobile menu when switching to desktop
       nav.classList.remove('mobile-menu-open');
-      menuButton.setAttribute('aria-expanded', 'false');
+
+      menuButton.setAttribute(
+        'aria-expanded',
+        'false',
+      );
     }
 
     if (view === 'mobile') {
       mobileButton.classList.add('active');
     }
-
-    console.log(`Page view changed to: ${view}`);
   }
 
-  // -----------------------------
-  // Toggle Events
-  // -----------------------------
   desktopButton.addEventListener('click', () => {
     changeView('desktop');
   });
@@ -130,11 +183,13 @@ export default function decorate(block) {
     changeView('mobile');
   });
 
-  // -----------------------------
-  // Mobile Menu
-  // -----------------------------
+  /* =========================
+     MOBILE MENU CLICK
+     ========================= */
+
   menuButton.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('mobile-menu-open');
+    const isOpen =
+      nav.classList.toggle('mobile-menu-open');
 
     menuButton.setAttribute(
       'aria-expanded',
@@ -142,23 +197,19 @@ export default function decorate(block) {
     );
   });
 
-  // -----------------------------
-  // Build Header
-  // -----------------------------
+  /* =========================
+     BUILD HEADER
+     ========================= */
+
   headerContainer.appendChild(logo);
   headerContainer.appendChild(nav);
   headerContainer.appendChild(searchForm);
   headerContainer.appendChild(viewToggle);
   headerContainer.appendChild(menuButton);
 
-  // Remove original authoring content
   block.innerHTML = '';
-
-  // Add generated header
   block.appendChild(headerContainer);
 
-  // -----------------------------
-  // Default View
-  // -----------------------------
+  /* Default */
   changeView('desktop');
 }
