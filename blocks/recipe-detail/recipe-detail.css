@@ -1,209 +1,307 @@
 /* =========================================================
-   RECIPE DETAIL
+   INSTRUCTIONS BLOCK
    ========================================================= */
 
-.recipe-detail {
-  width: calc(100% - 64px);
-  max-width: 1100px;
+.instructions {
+  width: 100%;
 
-  margin: 35px auto;
-  padding: 0;
+  margin: 0;
+
+  padding: 35px 40px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3e9df;
+
+  border-radius: 20px;
+
+  box-shadow: 0 5px 18px rgba(36, 77, 67, 0.06);
 
   box-sizing: border-box;
 }
 
 
 /* =========================================================
-   MAIN CARD
+   CONTAINER
    ========================================================= */
 
-.recipe-detail-layout {
+.instructions-container {
   width: 100%;
-  min-height: 420px;
+}
 
-  display: grid;
 
-  grid-template-columns: 1fr 1fr;
+/* =========================================================
+   HEADING
+   ========================================================= */
 
-  gap: 35px;
+.instructions-heading {
+  display: flex;
 
   align-items: center;
 
-  padding: 10px 18px;
+  gap: 16px;
 
-  background: #f5f7ed;
-
-  border-radius: 24px;
-
-  box-sizing: border-box;
+  margin: 0;
 }
 
 
 /* =========================================================
-   IMAGE
+   CHEF ICON
    ========================================================= */
 
-.recipe-detail-image-wrapper {
-  width: 100%;
-  height: 400px;
+.instructions-icon {
+  width: 48px;
+  height: 48px;
 
-  overflow: hidden;
+  display: flex;
 
-  border-radius: 18px;
+  align-items: center;
+  justify-content: center;
 
-  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
-.recipe-detail-image-wrapper picture {
-  display: block;
+.instructions-icon svg {
+  width: 43px;
+  height: 43px;
 
-  width: 100%;
-  height: 100%;
-}
+  fill: none;
 
-.recipe-detail-image-wrapper img {
-  display: block;
+  stroke: #244d43;
 
-  width: 100% !important;
-  height: 100% !important;
+  stroke-width: 2.5;
 
-  max-width: none !important;
+  stroke-linecap: round;
 
-  object-fit: cover;
-
-  border-radius: 18px;
+  stroke-linejoin: round;
 }
 
 
 /* =========================================================
-   RIGHT CONTENT
+   HEADING TEXT
    ========================================================= */
 
-.recipe-detail-content {
-  width: 100%;
-
-  padding: 20px 30px 20px 5px;
-
-  box-sizing: border-box;
-}
-
-
-/* =========================================================
-   TITLE
-   ========================================================= */
-
-.recipe-detail-title {
-  margin: 0 0 22px;
-}
-
-.recipe-detail-title h1 {
+.instructions-heading h2 {
   margin: 0;
 
   color: #244d43;
 
-  font-size: 48px;
+  font-size: 30px;
 
-  line-height: 1.15;
+  line-height: 1.2;
 
   font-weight: 700;
 }
 
 
 /* =========================================================
-   DESCRIPTION
+   HEADING UNDERLINE
    ========================================================= */
 
-.recipe-detail-description {
-  margin: 0 0 28px;
+.instructions-heading-line {
+  width: 60px;
 
-  color: #61736d;
+  height: 4px;
 
-  font-size: 18px;
+  margin-top: 14px;
 
-  line-height: 1.65;
+  margin-bottom: 28px;
 
-  font-weight: 400;
+  background: #7f9f45;
+
+  border-radius: 10px;
 }
 
 
 /* =========================================================
-   RECIPE INFORMATION
+   CONTENT
    ========================================================= */
 
-.recipe-detail-info {
+.instructions-content {
+  width: 100%;
+
+  color: #61736d;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   MAIN NUMBERED LIST
+   ========================================================= */
+
+.instructions-content ol.instructions-list {
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  counter-reset: instruction-step;
+}
+
+
+/* =========================================================
+   MAIN INSTRUCTION
+   ========================================================= */
+
+.instructions-content ol.instructions-list > li {
+  position: relative;
+
+  counter-increment: instruction-step;
+
+  display: grid;
+
+  grid-template-columns: 42px 1fr;
+
+  column-gap: 16px;
+
+  margin: 0 0 26px;
+
+  padding: 0;
+
+  color: #61736d;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   NUMBER CIRCLE
+   ========================================================= */
+
+.instructions-content ol.instructions-list > li::before {
+  content: counter(instruction-step);
+
+  width: 38px;
+  height: 38px;
+
   display: flex;
 
-  flex-direction: row;
-
-  flex-wrap: nowrap;
-
-  align-items: center;
-
-  gap: 10px;
-
-  width: 100%;
-}
-
-
-/* Individual pill */
-
-.recipe-detail-info-item {
-  display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  flex: 0 0 auto;
+  margin-top: 1px;
 
-  gap: 5px;
+  background: #7f9f45;
 
-  padding: 8px 12px;
+  color: #ffffff;
 
-  min-height: 32px;
+  border-radius: 50%;
 
-  background: #eef4e8;
+  font-size: 15px;
 
-  border: 1px solid #e0e9d9;
-
-  border-radius: 18px;
-
-  color: #244d43;
-
-  font-size: 11px;
+  font-weight: 700;
 
   line-height: 1;
-
-  font-weight: 600;
-
-  white-space: nowrap;
-
-  box-sizing: border-box;
 }
 
 
-/* Icon */
+/* =========================================================
+   MAIN STEP TITLE
+   ========================================================= */
 
-.recipe-detail-info-icon {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 14px;
-  height: 14px;
-
-  font-size: 12px;
+.instructions-content
+ol.instructions-list
+> li
+> p:first-child {
+  margin: 0 0 10px;
 
   color: #244d43;
 
-  flex-shrink: 0;
+  font-size: 17px;
+
+  font-weight: 700;
 }
 
 
-/* Text */
+/* =========================================================
+   NESTED BULLET LIST
+   ========================================================= */
 
-.recipe-detail-info-text {
-  white-space: nowrap;
+.instructions-content
+ol.instructions-list
+> li
+> ul {
+  grid-column: 2;
+
+  margin: 0;
+
+  padding-left: 20px;
+
+  list-style-type: circle;
+}
+
+
+/* =========================================================
+   NESTED BULLET ITEMS
+   ========================================================= */
+
+.instructions-content
+ol.instructions-list
+> li
+> ul
+> li {
+  margin: 0 0 9px;
+
+  padding-left: 5px;
+
+  color: #61736d;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BULLET COLOR
+   ========================================================= */
+
+.instructions-content
+ol.instructions-list
+> li
+> ul
+> li::marker {
+  color: #7f9f45;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.instructions-content p {
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   LAST STEP
+   ========================================================= */
+
+.instructions-content
+ol.instructions-list
+> li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   REMOVE DEFAULT EXTRA MARGINS
+   ========================================================= */
+
+.instructions-content
+ol.instructions-list
+> li
+> ul:last-child {
+  margin-bottom: 0;
 }
 
 
@@ -213,32 +311,18 @@
 
 @media (max-width: 900px) {
 
-  .recipe-detail {
-    width: calc(100% - 40px);
+  .instructions {
+    padding: 30px;
   }
 
-  .recipe-detail-layout {
-    grid-template-columns: 1fr;
-
-    gap: 25px;
-
-    padding: 15px;
+  .instructions-heading h2 {
+    font-size: 28px;
   }
 
-  .recipe-detail-image-wrapper {
-    height: 350px;
-  }
-
-  .recipe-detail-content {
-    padding: 10px 15px 25px;
-  }
-
-  .recipe-detail-title h1 {
-    font-size: 40px;
-  }
-
-  .recipe-detail-info {
-    flex-wrap: wrap;
+  .instructions-content
+  ol.instructions-list
+  > li {
+    font-size: 15px;
   }
 }
 
@@ -249,37 +333,67 @@
 
 @media (max-width: 600px) {
 
-  .recipe-detail {
-    width: calc(100% - 30px);
-
-    margin: 25px auto;
-  }
-
-  .recipe-detail-layout {
-    padding: 12px;
+  .instructions {
+    padding: 25px 20px;
 
     border-radius: 18px;
   }
 
-  .recipe-detail-image-wrapper {
-    height: 280px;
+  .instructions-heading {
+    gap: 12px;
   }
 
-  .recipe-detail-title h1 {
-    font-size: 32px;
+  .instructions-icon {
+    width: 42px;
+    height: 42px;
   }
 
-  .recipe-detail-description {
-    font-size: 16px;
+  .instructions-icon svg {
+    width: 38px;
+    height: 38px;
   }
 
-  .recipe-detail-info {
-    flex-wrap: wrap;
+  .instructions-heading h2 {
+    font-size: 25px;
   }
 
-  .recipe-detail-info-item {
-    font-size: 11px;
+  .instructions-heading-line {
+    margin-bottom: 22px;
+  }
 
-    padding: 7px 10px;
+  .instructions-content
+  ol.instructions-list
+  > li {
+    grid-template-columns: 36px 1fr;
+
+    column-gap: 12px;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+  }
+
+  .instructions-content
+  ol.instructions-list
+  > li::before {
+    width: 34px;
+    height: 34px;
+
+    font-size: 13px;
+  }
+
+  .instructions-content
+  ol.instructions-list
+  > li
+  > p:first-child {
+    font-size: 15px;
+  }
+
+  .instructions-content
+  ol.instructions-list
+  > li
+  > ul
+  > li {
+    font-size: 14px;
   }
 }

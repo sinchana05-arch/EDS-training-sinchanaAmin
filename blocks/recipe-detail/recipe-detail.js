@@ -1,162 +1,162 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
-  /*
-   * EDS removes the block header row ("Recipe Detail")
-   * from the content passed to decorate().
-   *
-   * Therefore:
-   * rows[0] = Image + Title
-   * rows[1] = Description
-   * rows[2] = Recipe information
-   */
-
-  if (rows.length < 3) {
+  if (!rows.length) {
     return;
   }
 
-  /* =====================================================
-     ROW 1 - IMAGE + TITLE
-     ===================================================== */
+  /*
+   * ---------------------------------------------------------
+   * CREATE INSTRUCTIONS CONTAINER
+   * ---------------------------------------------------------
+   */
 
-  const firstRow = rows[0];
+  const container = document.createElement('div');
+  container.className = 'instructions-container';
 
-  const imageCell = firstRow.children[0];
-  const titleCell = firstRow.children[1];
+  /*
+   * ---------------------------------------------------------
+   * CREATE HEADING
+   * ---------------------------------------------------------
+   */
 
-  /* Image wrapper */
+  const heading = document.createElement('div');
+  heading.className = 'instructions-heading';
 
-  const imageWrapper = document.createElement('div');
-  imageWrapper.className = 'recipe-detail-image-wrapper';
+  /*
+   * Chef hat SVG icon
+   */
 
-  if (imageCell) {
-    const picture = imageCell.querySelector('picture');
-    const img = imageCell.querySelector('img');
+  const icon = document.createElement('span');
+  icon.className = 'instructions-icon';
+  icon.setAttribute('aria-hidden', 'true');
 
-    if (picture) {
-      imageWrapper.appendChild(picture.cloneNode(true));
-    } else if (img) {
-      imageWrapper.appendChild(img.cloneNode(true));
-    }
-  }
+  icon.innerHTML = `
+    <svg viewBox="0 0 48 48" role="img">
+      <path d="M12 22h24v17H12z"></path>
+      <path d="M9 22h30"></path>
+      <path d="M15 22v-4"></path>
+      <path d="M33 22v-4"></path>
+      <path d="M15 18c0-5 3-8 7-8"></path>
+      <path d="M33 18c0-5-3-8-7-8"></path>
+      <path d="M18 39h12"></path>
+    </svg>
+  `;
 
-  /* =====================================================
-     RIGHT SIDE CONTENT
-     ===================================================== */
+  /*
+   * Heading text
+   */
+
+  const title = document.createElement('h2');
+  title.textContent = 'Instructions';
+
+  heading.appendChild(icon);
+  heading.appendChild(title);
+
+  container.appendChild(heading);
+
+  /*
+   * Green underline
+   */
+
+  const underline = document.createElement('div');
+  underline.className = 'instructions-heading-line';
+
+  container.appendChild(underline);
+
+  /*
+   * ---------------------------------------------------------
+   * CONTENT
+   * ---------------------------------------------------------
+   */
 
   const content = document.createElement('div');
-  content.className = 'recipe-detail-content';
+  content.className = 'instructions-content';
 
-  /* Title */
+  rows.forEach((row) => {
+    const cells = [...row.children];
 
-  if (titleCell) {
-    const titleWrapper = document.createElement('div');
-    titleWrapper.className = 'recipe-detail-title';
+    cells.forEach((cell) => {
+      /*
+       * Move all authored content into the instructions area.
+       */
 
-    const title = document.createElement('h1');
-    title.textContent = titleCell.textContent.trim();
+      [...cell.childNodes].forEach((node) => {
+        content.appendChild(node.cloneNode(true));
+      });
+    });
+  });
 
-    titleWrapper.appendChild(title);
+  /*
+   * ---------------------------------------------------------
+   * STYLE MAIN ORDERED LIST
+   * ---------------------------------------------------------
+   */
 
-    content.appendChild(titleWrapper);
-  }
+  const orderedLists = content.querySelectorAll('ol');
 
-  /* =====================================================
-     ROW 2 - DESCRIPTION
-     ===================================================== */
+  orderedLists.forEach((list) => {
+    list.classList.add('instructions-list');
+  });
 
-  const descriptionRow = rows[1];
-  const descriptionCell = descriptionRow?.children[1];
+  /*
+   * ---------------------------------------------------------
+   * STYLE NESTED LISTS
+   * ---------------------------------------------------------
+   */
 
-  if (descriptionCell) {
-    const description = document.createElement('div');
+  const nestedLists = content.querySelectorAll('ol ul, ol ol');
 
-    description.className = 'recipe-detail-description';
+  nestedLists.forEach((list) => {
+    list.classList.add('instructions-sub-list');
+  });
 
-    description.textContent = descriptionCell.textContent.trim();
+  /*
+   * ---------------------------------------------------------
+   * MAKE MAIN STEP TITLES BOLD
+   * ---------------------------------------------------------
+   *
+   * If the first text inside each main <li> is plain text,
+   * this does not change the content structure.
+   */
 
-    content.appendChild(description);
-  }
+  const mainItems = content.querySelectorAll(
+    'ol.instructions-list > li',
+  );
 
-  /* =====================================================
-     ROW 3 - RECIPE INFORMATION
-     ===================================================== */
-
-  const infoRow = rows[2];
-  const infoCell = infoRow?.children[1];
-
-  if (infoCell) {
-    const info = document.createElement('div');
-
-    info.className = 'recipe-detail-info';
+  mainItems.forEach((item) => {
+    const firstElement = item.firstElementChild;
 
     /*
-     * DA.live normally creates separate paragraphs
-     * inside the cell.
+     * If the first element is a nested list, don't modify it.
      */
 
-    const values = [...infoCell.children]
-      .map((element) => element.textContent.trim())
-      .filter(Boolean);
-
-    /*
-     * Fallback if there are no child elements.
-     */
-
-    if (!values.length) {
-      const fallback = infoCell.textContent
-        .split('\n')
-        .map((value) => value.trim())
-        .filter(Boolean);
-
-      values.push(...fallback);
+    if (
+      firstElement
+      && (firstElement.tagName === 'UL'
+      || firstElement.tagName === 'OL')
+    ) {
+      return;
     }
 
-    const icons = [
-      '◷',
-      '♟',
-      '♧',
-      '▥',
-    ];
+    /*
+     * If the first element is a paragraph,
+     * make it the step title.
+     */
 
-    values.slice(0, 4).forEach((value, index) => {
-      const item = document.createElement('span');
+    if (firstElement && firstElement.tagName === 'P') {
+      firstElement.classList.add('instruction-step-title');
+    }
+  });
 
-      item.className = 'recipe-detail-info-item';
-
-      const icon = document.createElement('span');
-
-      icon.className = 'recipe-detail-info-icon';
-
-      icon.textContent = icons[index];
-
-      const text = document.createElement('span');
-
-      text.className = 'recipe-detail-info-text';
-
-      text.textContent = value;
-
-      item.appendChild(icon);
-      item.appendChild(text);
-
-      info.appendChild(item);
-    });
-
-    content.appendChild(info);
-  }
-
-  /* =====================================================
-     FINAL LAYOUT
-     ===================================================== */
-
-  const layout = document.createElement('div');
-
-  layout.className = 'recipe-detail-layout';
-
-  layout.appendChild(imageWrapper);
-  layout.appendChild(content);
+  /*
+   * ---------------------------------------------------------
+   * BUILD FINAL BLOCK
+   * ---------------------------------------------------------
+   */
 
   block.innerHTML = '';
 
-  block.appendChild(layout);
+  block.appendChild(container);
+  container.appendChild(content);
 }
