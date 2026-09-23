@@ -2,9 +2,9 @@ export default function decorate(block) {
   const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
 
-  /* ==========================================
+  /* =========================
      LOGO
-     ========================================== */
+     ========================= */
 
   const logo = document.createElement('a');
   logo.className = 'header-logo';
@@ -49,30 +49,18 @@ export default function decorate(block) {
   logo.appendChild(logoIcon);
   logo.appendChild(logoText);
 
-  /* ==========================================
+  /* =========================
      NAVIGATION
-     ========================================== */
+     ========================= */
 
   const nav = document.createElement('nav');
   nav.className = 'header-nav';
 
   const navItems = [
-    {
-      text: 'Home',
-      href: '/',
-    },
-    {
-      text: 'Recipes',
-      href: '/recipes',
-    },
-    {
-      text: 'About Us',
-      href: 'https://main--eds-training-sinchanaamin--sinchana05-arch.aem.page/aboutus',
-    },
-    {
-      text: 'Contact',
-      href: '/contact',
-    },
+    { text: 'Home', href: '/' },
+    { text: 'Recipes', href: '/recipes' },
+    { text: 'About Us', href: 'https://main--eds-training-sinchanaamin--sinchana05-arch.aem.page/aboutus' },
+    { text: 'Contact', href: '/contact' },
   ];
 
   navItems.forEach((item) => {
@@ -85,30 +73,22 @@ export default function decorate(block) {
     nav.appendChild(link);
   });
 
-  /* ==========================================
+  /* =========================
      SEARCH
-     ========================================== */
+     ========================= */
 
   const searchForm = document.createElement('form');
   searchForm.className = 'header-search';
 
   const searchInput = document.createElement('input');
-
   searchInput.type = 'search';
   searchInput.placeholder = 'Search recipes...';
-  searchInput.setAttribute(
-    'aria-label',
-    'Search recipes',
-  );
+  searchInput.setAttribute('aria-label', 'Search recipes');
 
   const searchButton = document.createElement('button');
-
   searchButton.type = 'submit';
   searchButton.className = 'header-search-button';
-  searchButton.setAttribute(
-    'aria-label',
-    'Search',
-  );
+  searchButton.setAttribute('aria-label', 'Search');
 
   searchButton.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -131,48 +111,36 @@ export default function decorate(block) {
     }
   });
 
-  /* ==========================================
+  /* =========================
      DESKTOP / MOBILE TOGGLE
-     ========================================== */
+     ========================= */
 
   const viewToggle = document.createElement('div');
   viewToggle.className = 'view-toggle';
 
   const desktopButton = document.createElement('button');
-
   desktopButton.type = 'button';
-  desktopButton.className =
-    'view-button desktop-button';
+  desktopButton.className = 'view-button desktop-button';
   desktopButton.textContent = 'Desktop';
 
   const mobileButton = document.createElement('button');
-
   mobileButton.type = 'button';
-  mobileButton.className =
-    'view-button mobile-button';
+  mobileButton.className = 'view-button mobile-button';
   mobileButton.textContent = 'Mobile';
 
   viewToggle.appendChild(desktopButton);
   viewToggle.appendChild(mobileButton);
 
-  /* ==========================================
+  /* =========================
      MOBILE MENU BUTTON
-     ========================================== */
+     ========================= */
 
   const menuButton = document.createElement('button');
 
   menuButton.type = 'button';
   menuButton.className = 'header-menu-button';
-
-  menuButton.setAttribute(
-    'aria-label',
-    'Open menu',
-  );
-
-  menuButton.setAttribute(
-    'aria-expanded',
-    'false',
-  );
+  menuButton.setAttribute('aria-label', 'Open menu');
+  menuButton.setAttribute('aria-expanded', 'false');
 
   menuButton.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -182,9 +150,9 @@ export default function decorate(block) {
     </svg>
   `;
 
-  /* ==========================================
+  /* =========================
      VIEW CHANGE
-     ========================================== */
+     ========================= */
 
   function changeView(view) {
     document.body.classList.remove(
@@ -192,9 +160,7 @@ export default function decorate(block) {
       'view-mobile',
     );
 
-    document.body.classList.add(
-      `view-${view}`,
-    );
+    document.body.classList.add(`view-${view}`);
 
     desktopButton.classList.remove('active');
     mobileButton.classList.remove('active');
@@ -202,57 +168,42 @@ export default function decorate(block) {
     if (view === 'desktop') {
       desktopButton.classList.add('active');
 
-      nav.classList.remove(
-        'mobile-menu-open',
-      );
+      nav.classList.remove('mobile-menu-open');
 
       menuButton.setAttribute(
         'aria-expanded',
         'false',
       );
-    }
-
-    if (view === 'mobile') {
+    } else {
       mobileButton.classList.add('active');
     }
   }
 
-  desktopButton.addEventListener(
-    'click',
-    () => {
-      changeView('desktop');
-    },
-  );
+  desktopButton.addEventListener('click', () => {
+    changeView('desktop');
+  });
 
-  mobileButton.addEventListener(
-    'click',
-    () => {
-      changeView('mobile');
-    },
-  );
+  mobileButton.addEventListener('click', () => {
+    changeView('mobile');
+  });
 
-  /* ==========================================
+  /* =========================
      MOBILE MENU
-     ========================================== */
+     ========================= */
 
-  menuButton.addEventListener(
-    'click',
-    () => {
-      const isOpen =
-        nav.classList.toggle(
-          'mobile-menu-open',
-        );
+  menuButton.addEventListener('click', () => {
+    const isOpen =
+      nav.classList.toggle('mobile-menu-open');
 
-      menuButton.setAttribute(
-        'aria-expanded',
-        isOpen ? 'true' : 'false',
-      );
-    },
-  );
+    menuButton.setAttribute(
+      'aria-expanded',
+      isOpen ? 'true' : 'false',
+    );
+  });
 
-  /* ==========================================
+  /* =========================
      BUILD HEADER
-     ========================================== */
+     ========================= */
 
   headerContainer.appendChild(logo);
   headerContainer.appendChild(nav);
@@ -263,6 +214,6 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.appendChild(headerContainer);
 
-  /* Desktop is default */
+  // Desktop by default
   changeView('desktop');
 }
