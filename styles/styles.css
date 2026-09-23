@@ -594,3 +594,68 @@ main .section {
     font-size: 15px;
   }
 }
+/* =====================================================
+   MANUAL DESKTOP VIEW
+   ===================================================== */
+
+body.view-desktop {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body.view-desktop .section {
+  width: 100%;
+}
+
+/* Recipe detail */
+
+body.view-desktop .recipe-detail-layout {
+  grid-template-columns: 1fr 1fr;
+}
+
+body.view-desktop .recipe-detail-image-wrapper {
+  height: 400px;
+}
+
+body.view-desktop .recipe-detail-title h1 {
+  font-size: 48px;
+}
+
+body.view-desktop .recipe-detail-info {
+  flex-wrap: nowrap;
+}
+
+/* Ingredients + Instructions */
+
+body.view-desktop .section:has(.ingredients):has(.instructions) {
+  width: calc(100% - 64px);
+  max-width: 1100px;
+  grid-template-columns: 0.85fr 1.35fr;
+  gap: 30px;
+}
+
+/* Why Choose Us */
+
+body.view-desktop .why-choose-us-cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Header */
+
+body.view-desktop .header-nav {
+  flex-direction: row;
+}
+
+body.view-desktop .header-center {
+  display: flex;
+}
+
+body.view-desktop .header-menu-button {
+  display: none;
+}
+
+/* General */
+
+body.view-desktop .hero {
+  min-height: 500px;
+}
