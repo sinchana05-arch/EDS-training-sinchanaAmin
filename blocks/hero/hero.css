@@ -1,30 +1,420 @@
-.hero > div:nth-child(2) {
+/* =========================================================
+   HERO BANNER
+   ========================================================= */
+
+.hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO WRAPPER
+   ========================================================= */
+
+.hero-wrapper {
   position: relative;
+
+  width: 100%;
+
+  height: 520px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+   ========================================================= */
+
+.hero-image {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.hero-image picture {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  margin: 0;
+}
+
+
+/* =========================================================
+   LEFT SIDE DARK / LIGHT OVERLAY
+   ========================================================= */
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
   z-index: 1;
-  padding: 60px;
-  max-width: 600px;
-  color: #2F4F3A;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.82) 18%,
+      rgba(255, 255, 255, 0.48) 35%,
+      rgba(255, 255, 255, 0.05) 58%,
+      rgba(255, 255, 255, 0) 75%
+    );
 }
 
-.hero h1 {
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
+.hero-content {
+  position: absolute;
+
+  top: 50%;
+  left: 7%;
+
+  z-index: 2;
+
+  width: 430px;
+
+  transform: translateY(-50%);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO HEADING
+   ========================================================= */
+
+.hero-content h1 {
+  margin: 0 0 18px;
+
+  color: #183f35;
+
+  font-family: Arial, sans-serif;
+
   font-size: 48px;
-  margin-bottom: 16px;
-  color: #2F4F3A;
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
 }
 
-.hero p {
-  font-size: 20px;
-  line-height: 1.6;
-  color: #5F6F64;
+.hero-content h2 {
+  margin: 0 0 18px;
+
+  color: #183f35;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 40px;
+
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
 }
 
-.hero a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #6B8E23;
-  color: #FFFFFF;
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.hero-content p {
+  max-width: 390px;
+
+  margin: 0 0 28px;
+
+  color: #263d37;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 19px;
+
+  line-height: 1.35;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   EXPLORE RECIPES BUTTON
+   ========================================================= */
+
+.hero-content a {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 13px 26px;
+
+  background: #719b32;
+
+  color: #ffffff;
+
+  border-radius: 6px;
+
+  border: none;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
   text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
+
+  box-shadow:
+    0 4px 12px rgba(36, 77, 67, 0.18);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hero-content a:hover {
+  background: #5e8428;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(36, 77, 67, 0.22);
+}
+
+.hero-content a:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   DESKTOP VIEW
+   ========================================================= */
+
+body.view-desktop .hero-wrapper {
+  height: 520px;
+}
+
+body.view-desktop .hero-content {
+  left: 7%;
+
+  width: 430px;
+}
+
+body.view-desktop .hero-content h1 {
+  font-size: 48px;
+}
+
+body.view-desktop .hero-content p {
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   MOBILE VIEW
+   ========================================================= */
+
+body.view-mobile .hero-wrapper {
+  height: 480px;
+}
+
+body.view-mobile .hero-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.78) 30%,
+      rgba(255, 255, 255, 0.20) 58%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+}
+
+body.view-mobile .hero-content {
+  top: 35px;
+  left: 25px;
+
+  width: calc(100% - 50px);
+
+  transform: none;
+}
+
+body.view-mobile .hero-content h1 {
+  margin-bottom: 14px;
+
+  font-size: 34px;
+
+  line-height: 1.05;
+}
+
+body.view-mobile .hero-content h2 {
+  font-size: 30px;
+}
+
+body.view-mobile .hero-content p {
+  max-width: 330px;
+
+  margin-bottom: 20px;
+
+  font-size: 16px;
+
+  line-height: 1.4;
+}
+
+body.view-mobile .hero-content a {
+  padding: 11px 22px;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .hero-wrapper {
+    height: 450px;
+  }
+
+  .hero-content {
+    left: 5%;
+
+    width: 360px;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SCREEN
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .hero-wrapper {
+    height: 500px;
+  }
+
+  .hero-image img {
+    object-position: center;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(255, 255, 255, 0.80) 35%,
+        rgba(255, 255, 255, 0.18) 65%,
+        rgba(0, 0, 0, 0.08) 100%
+      );
+  }
+
+  .hero-content {
+    top: 28px;
+
+    left: 20px;
+
+    width: calc(100% - 40px);
+
+    transform: none;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+
+    line-height: 1.05;
+  }
+
+  .hero-content h2 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    max-width: 300px;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+  }
+
+  .hero-content a {
+    padding: 11px 20px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .hero-wrapper {
+    height: 460px;
+  }
+
+  .hero-content {
+    top: 24px;
+    left: 18px;
+
+    width: calc(100% - 36px);
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content h2 {
+    font-size: 25px;
+  }
+
+  .hero-content p {
+    max-width: 270px;
+
+    font-size: 14px;
+  }
 }
