@@ -594,8 +594,14 @@ main .section {
     font-size: 15px;
   }
 }
+
 /* =====================================================
-   MANUAL DESKTOP VIEW
+   MANUAL DESKTOP / MOBILE VIEW
+   ===================================================== */
+
+
+/* =====================================================
+   DESKTOP VIEW
    ===================================================== */
 
 body.view-desktop {
@@ -603,14 +609,19 @@ body.view-desktop {
   overflow-x: hidden;
 }
 
-body.view-desktop .section {
-  width: 100%;
+
+/* -------------------------
+   Recipe Detail
+   ------------------------- */
+
+body.view-desktop .recipe-detail {
+  width: calc(100% - 64px);
+  max-width: 1100px;
 }
 
-/* Recipe detail */
-
 body.view-desktop .recipe-detail-layout {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 35px;
 }
 
 body.view-desktop .recipe-detail-image-wrapper {
@@ -625,43 +636,92 @@ body.view-desktop .recipe-detail-info {
   flex-wrap: nowrap;
 }
 
-/* Ingredients + Instructions */
 
-body.view-desktop .section:has(.ingredients):has(.instructions) {
+/* -------------------------
+   Ingredients + Instructions
+   ------------------------- */
+
+body.view-desktop
+.section:has(.ingredients):has(.instructions) {
   width: calc(100% - 64px);
   max-width: 1100px;
-  grid-template-columns: 0.85fr 1.35fr;
+
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+
   gap: 30px;
 }
 
-/* Why Choose Us */
+
+/* -------------------------
+   Why Choose Us
+   ------------------------- */
 
 body.view-desktop .why-choose-us-cards {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Header */
 
-body.view-desktop .header-nav {
-  flex-direction: row;
-}
-
-body.view-desktop .header-center {
-  display: flex;
-}
-
-body.view-desktop .header-menu-button {
-  display: none;
-}
-
-/* General */
+/* -------------------------
+   Hero
+   ------------------------- */
 
 body.view-desktop .hero {
   min-height: 500px;
 }
 
+
+/* -------------------------
+   Header
+   ------------------------- */
+
+body.view-desktop .header {
+  width: 100%;
+}
+
+body.view-desktop .header-container {
+  width: calc(100% - 40px);
+  max-width: 1450px;
+  min-height: 78px;
+
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  margin: 0 auto;
+}
+
+body.view-desktop .header-logo {
+  font-size: 30px;
+  white-space: nowrap;
+}
+
+body.view-desktop .header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+
+  flex: 1;
+}
+
+body.view-desktop .header-nav a {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+body.view-desktop .header-search {
+  display: flex;
+  width: 300px;
+}
+
+body.view-desktop .menu-button {
+  display: none;
+}
+
+
 /* =====================================================
-   MANUAL MOBILE VIEW
+   MOBILE VIEW
    ===================================================== */
 
 body.view-mobile {
@@ -669,70 +729,94 @@ body.view-mobile {
   overflow-x: hidden;
 }
 
-/* =====================================================
-   HEADER
-   ===================================================== */
+
+/* -------------------------
+   Header
+   ------------------------- */
+
+body.view-mobile .header {
+  width: 100%;
+}
 
 body.view-mobile .header-container {
+  position: relative;
+
   width: calc(100% - 24px);
   min-height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   gap: 10px;
+
+  margin: 0 auto;
 }
 
-body.view-mobile .header-logo-text {
+body.view-mobile .header-logo {
   font-size: 22px;
-}
-
-body.view-mobile .header-logo-icon,
-body.view-mobile .header-logo-icon svg {
-  width: 40px;
-  height: 40px;
-}
-
-body.view-mobile .header-center {
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  display: none;
-  padding: 25px;
-  background: #fff;
-  border-bottom: 1px solid #e7ece2;
-  box-shadow: 0 8px 20px rgba(36, 77, 67, 0.08);
-}
-
-body.view-mobile .header.menu-open .header-center {
-  display: block;
+  white-space: nowrap;
 }
 
 body.view-mobile .header-nav {
-  flex-direction: column;
-  gap: 20px;
-}
-
-body.view-mobile .header-nav-link {
-  font-size: 18px;
-}
-
-body.view-mobile .header-search {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-body.view-mobile .header-search input {
   display: none;
 }
 
-body.view-mobile .header-menu-button {
-  display: block;
+body.view-mobile .header-nav.mobile-menu-open {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  position: absolute;
+
+  top: 70px;
+  left: 0;
+  right: 0;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e7ece2;
+
+  box-shadow: 0 8px 20px rgba(36, 77, 67, 0.08);
+
+  z-index: 1000;
 }
 
-/* =====================================================
-   HERO
-   ===================================================== */
+body.view-mobile .header-nav.mobile-menu-open a {
+  font-size: 18px;
+  padding: 8px 0;
+}
+
+body.view-mobile .header-search {
+  display: none;
+}
+
+body.view-mobile .menu-button {
+  display: flex;
+
+  width: 44px;
+  height: 44px;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #244d43;
+  color: #ffffff;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+/* -------------------------
+   Hero
+   ------------------------- */
 
 body.view-mobile .hero {
   min-height: 420px;
@@ -752,9 +836,10 @@ body.view-mobile .hero p {
   font-size: 16px;
 }
 
-/* =====================================================
-   RECIPE DETAIL
-   ===================================================== */
+
+/* -------------------------
+   Recipe Detail
+   ------------------------- */
 
 body.view-mobile .recipe-detail {
   width: calc(100% - 30px);
@@ -763,8 +848,11 @@ body.view-mobile .recipe-detail {
 
 body.view-mobile .recipe-detail-layout {
   grid-template-columns: 1fr;
+
   gap: 20px;
+
   padding: 12px;
+
   border-radius: 18px;
 }
 
@@ -793,21 +881,73 @@ body.view-mobile .recipe-detail-info-item {
   padding: 7px 10px;
 }
 
-/* =====================================================
-   INGREDIENTS + INSTRUCTIONS
-   ===================================================== */
 
-body.view-mobile .section:has(.ingredients):has(.instructions) {
+/* -------------------------
+   Ingredients + Instructions
+   ------------------------- */
+
+body.view-mobile
+.section:has(.ingredients):has(.instructions) {
   width: calc(100% - 36px);
+
   max-width: none;
+
   margin: 25px auto;
+
+  display: grid;
+
   grid-template-columns: 1fr;
+
   gap: 25px;
 }
 
-/* =====================================================
-   WHY CHOOSE US
-   ===================================================== */
+
+/* -------------------------
+   Ingredients
+   ------------------------- */
+
+body.view-mobile .ingredients {
+  padding: 25px 20px;
+  min-height: auto;
+}
+
+body.view-mobile .ingredients h2 {
+  font-size: 25px;
+}
+
+body.view-mobile .ingredients li {
+  font-size: 15px;
+}
+
+
+/* -------------------------
+   Instructions
+   ------------------------- */
+
+body.view-mobile .instructions {
+  padding: 25px 20px;
+  min-height: auto;
+
+  border-radius: 18px;
+}
+
+body.view-mobile .instructions h2 {
+  font-size: 25px;
+}
+
+body.view-mobile
+.instructions li {
+  grid-template-columns: 36px 1fr;
+
+  column-gap: 12px;
+
+  font-size: 14px;
+}
+
+
+/* -------------------------
+   Why Choose Us
+   ------------------------- */
 
 body.view-mobile .why-choose-us {
   padding: 45px 18px;
@@ -826,9 +966,10 @@ body.view-mobile .why-choose-us-title {
   font-size: 22px;
 }
 
-/* =====================================================
+
+/* -------------------------
    CTA
-   ===================================================== */
+   ------------------------- */
 
 body.view-mobile .cta {
   margin: 40px 18px;
@@ -844,57 +985,43 @@ body.view-mobile .cta p {
   font-size: 16px;
 }
 
-/* =====================================================
-   INGREDIENTS
-   ===================================================== */
 
-body.view-mobile .ingredients {
-  padding: 25px 20px;
-}
+/* -------------------------
+   Recipe Tips
+   ------------------------- */
 
-body.view-mobile .ingredients h2 {
-  font-size: 25px;
-}
-
-body.view-mobile .ingredients li {
-  font-size: 15px;
-}
-
-/* =====================================================
-   INSTRUCTIONS
-   ===================================================== */
-
-body.view-mobile .instructions {
-  padding: 25px 20px;
-  border-radius: 18px;
-}
-
-body.view-mobile .instructions-heading h2 {
-  font-size: 25px;
-}
-
-body.view-mobile .instructions-content ol.instructions-list > li {
-  grid-template-columns: 36px 1fr;
-  column-gap: 12px;
-  margin-bottom: 22px;
-  font-size: 14px;
-}
-
-body.view-mobile .instructions-content ol.instructions-list > li::before {
-  width: 34px;
-  height: 34px;
-  font-size: 13px;
-}
-
-body.view-mobile .instructions-content ol.instructions-list > li > p:first-child {
-  font-size: 15px;
-}
-
-/* =====================================================
-   RECIPE TIPS
-   ===================================================== */
-
-body.view-mobile .section:has(.recipe-tips) {
+body.view-mobile
+.section:has(.recipe-tips) {
   width: calc(100% - 36px);
+
   margin: 25px auto 40px;
+}
+
+body.view-mobile .recipe-tips {
+  padding: 28px 24px;
+}
+
+body.view-mobile .recipe-tips-content {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+body.view-mobile .recipe-tips-content::before {
+  width: 70px;
+  min-width: 70px;
+  height: 60px;
+
+  border-right: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+
+  margin-right: 0;
+  margin-bottom: 20px;
+}
+
+body.view-mobile .recipe-tips-content h2 {
+  font-size: 27px;
+}
+
+body.view-mobile .recipe-tips-content li {
+  font-size: 15px;
 }
