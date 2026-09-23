@@ -1,39 +1,27 @@
 export default function decorate(block) {
-  /*
-   * ---------------------------------------------------------
-   * HEADER CONTAINER
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     MAIN HEADER CONTAINER
+     ========================= */
 
   const header = document.createElement('div');
   header.className = 'header-container';
 
 
-  /*
-   * ---------------------------------------------------------
-   * LOGO
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     LOGO
+     ========================= */
 
   const logo = document.createElement('a');
-
   logo.className = 'header-logo';
-
   logo.href = '/';
-
   logo.setAttribute('aria-label', 'Recipe Finder Home');
 
-
-  /*
-   * Leaf logo
-   */
-
   const logoIcon = document.createElement('span');
-
   logoIcon.className = 'header-logo-icon';
 
   logoIcon.innerHTML = `
     <svg viewBox="0 0 64 64" aria-hidden="true">
+
       <path
         d="M31 56C18 48 10 38 12 25
         C13 16 20 9 31 6
@@ -57,42 +45,25 @@ export default function decorate(block) {
         stroke-width="3"
         stroke-linecap="round"
       />
+
     </svg>
   `;
 
-
-  /*
-   * Logo text
-   */
-
   const logoText = document.createElement('span');
-
   logoText.className = 'header-logo-text';
-
   logoText.textContent = 'Recipe Finder';
 
-
   logo.appendChild(logoIcon);
-
   logo.appendChild(logoText);
 
 
-  /*
-   * ---------------------------------------------------------
-   * NAVIGATION
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     NAVIGATION
+     ========================= */
 
   const nav = document.createElement('nav');
-
   nav.className = 'header-nav';
-
   nav.setAttribute('aria-label', 'Main navigation');
-
-
-  /*
-   * Navigation links
-   */
 
   const links = [
     {
@@ -113,36 +84,25 @@ export default function decorate(block) {
     },
   ];
 
-
   links.forEach((item) => {
     const link = document.createElement('a');
 
     link.href = item.href;
-
     link.textContent = item.text;
-
     link.className = 'header-nav-link';
 
     nav.appendChild(link);
   });
 
 
-  /*
-   * ---------------------------------------------------------
-   * SEARCH
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     SEARCH
+     ========================= */
 
   const search = document.createElement('form');
 
   search.className = 'header-search';
-
   search.setAttribute('role', 'search');
-
-
-  /*
-   * Search icon
-   */
 
   const searchIcon = document.createElement('span');
 
@@ -150,6 +110,7 @@ export default function decorate(block) {
 
   searchIcon.innerHTML = `
     <svg viewBox="0 0 24 24" aria-hidden="true">
+
       <circle
         cx="11"
         cy="11"
@@ -158,6 +119,7 @@ export default function decorate(block) {
         stroke="currentColor"
         stroke-width="2"
       />
+
       <path
         d="M16 16L21 21"
         fill="none"
@@ -165,36 +127,23 @@ export default function decorate(block) {
         stroke-width="2"
         stroke-linecap="round"
       />
+
     </svg>
   `;
-
-
-  /*
-   * Search input
-   */
 
   const searchInput = document.createElement('input');
 
   searchInput.type = 'search';
-
   searchInput.placeholder = 'Search recipes...';
-
-  searchInput.setAttribute(
-    'aria-label',
-    'Search recipes',
-  );
-
+  searchInput.setAttribute('aria-label', 'Search recipes');
 
   search.appendChild(searchIcon);
-
   search.appendChild(searchInput);
 
 
-  /*
-   * ---------------------------------------------------------
-   * MOBILE MENU BUTTON
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     MOBILE MENU BUTTON
+     ========================= */
 
   const menuButton = document.createElement('button');
 
@@ -219,29 +168,30 @@ export default function decorate(block) {
   `;
 
 
-  /*
-   * ---------------------------------------------------------
-   * MOBILE MENU
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     MENU TOGGLE
+     ========================= */
 
   menuButton.addEventListener('click', () => {
-    const isOpen = header.classList.toggle(
-      'menu-open',
-    );
+    const isOpen = header.classList.toggle('menu-open');
 
     menuButton.setAttribute(
       'aria-expanded',
       String(isOpen),
     );
+
+    menuButton.setAttribute(
+      'aria-label',
+      isOpen
+        ? 'Close navigation menu'
+        : 'Open navigation menu',
+    );
   });
 
 
-  /*
-   * ---------------------------------------------------------
-   * SEARCH SUBMIT
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     SEARCH SUBMIT
+     ========================= */
 
   search.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -252,57 +202,42 @@ export default function decorate(block) {
       return;
     }
 
-    /*
-     * Change this URL later if your recipe
-     * search page uses a different path.
-     */
-
     window.location.href =
       `/recipes?search=${encodeURIComponent(query)}`;
   });
 
 
-  /*
-   * ---------------------------------------------------------
-   * BUILD HEADER
-   * ---------------------------------------------------------
-   */
+  /* =========================
+     HEADER SECTIONS
+     ========================= */
 
   const left = document.createElement('div');
-
   left.className = 'header-left';
 
   left.appendChild(logo);
 
 
   const center = document.createElement('div');
-
   center.className = 'header-center';
 
   center.appendChild(nav);
 
 
   const right = document.createElement('div');
-
   right.className = 'header-right';
 
   right.appendChild(search);
-
   right.appendChild(menuButton);
 
 
+  /* =========================
+     BUILD HEADER
+     ========================= */
+
   header.appendChild(left);
-
   header.appendChild(center);
-
   header.appendChild(right);
 
-
-  /*
-   * ---------------------------------------------------------
-   * CLEAN ORIGINAL BLOCK
-   * ---------------------------------------------------------
-   */
 
   block.innerHTML = '';
 
