@@ -6,7 +6,6 @@
   width: 100%;
   background: #ffffff;
   border-bottom: 1px solid #edf1e8;
-  box-sizing: border-box;
   position: relative;
   z-index: 100;
 }
@@ -28,8 +27,6 @@
   justify-content: space-between;
 
   gap: 45px;
-
-  box-sizing: border-box;
 }
 
 
@@ -56,31 +53,24 @@
   width: 48px;
   height: 48px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  flex-shrink: 0;
 }
 
 .header-logo-icon svg {
   width: 48px;
   height: 48px;
-  display: block;
 }
 
 .header-logo-text {
   color: #244d43;
 
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
+  font-family: Georgia, 'Times New Roman', serif;
 
   font-size: 30px;
   font-weight: 700;
 
-  line-height: 1;
   white-space: nowrap;
 }
 
@@ -100,7 +90,6 @@
 .header-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
 
   gap: 45px;
 }
@@ -119,6 +108,10 @@
   transition: color 0.25s ease;
 }
 
+.header-nav-link:hover {
+  color: #7f9f45;
+}
+
 .header-nav-link::after {
   content: '';
 
@@ -132,13 +125,7 @@
 
   background: #7f9f45;
 
-  border-radius: 2px;
-
   transition: width 0.25s ease;
-}
-
-.header-nav-link:hover {
-  color: #7f9f45;
 }
 
 .header-nav-link:hover::after {
@@ -182,10 +169,6 @@
   border-radius: 25px;
 
   box-sizing: border-box;
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
 }
 
 .header-search:focus-within {
@@ -205,8 +188,6 @@
   justify-content: center;
 
   color: #7f9f45;
-
-  flex-shrink: 0;
 }
 
 .header-search-icon svg {
@@ -216,9 +197,6 @@
 
 .header-search input {
   width: 100%;
-  min-width: 0;
-
-  padding: 0;
 
   border: 0;
   outline: 0;
@@ -228,7 +206,6 @@
   color: #244d43;
 
   font-size: 15px;
-  font-family: inherit;
 }
 
 .header-search input::placeholder {
@@ -237,7 +214,7 @@
 
 
 /* =========================================================
-   DESKTOP / MOBILE VIEW TOGGLE
+   DESKTOP / MOBILE TOGGLE
    ========================================================= */
 
 .header-view-toggle {
@@ -251,12 +228,10 @@
   border: 1px solid #e2e9dc;
 
   border-radius: 22px;
-
-  white-space: nowrap;
 }
 
 .header-view-button {
-  min-width: 70px;
+  min-width: 68px;
   height: 34px;
 
   padding: 0 12px;
@@ -276,8 +251,7 @@
 
   transition:
     background 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s ease;
+    color 0.25s ease;
 }
 
 .header-view-button:hover {
@@ -286,12 +260,7 @@
 
 .header-view-button.active {
   background: #244d43;
-
   color: #ffffff;
-
-  box-shadow:
-    0 2px 6px
-    rgba(36, 77, 67, 0.18);
 }
 
 
@@ -322,8 +291,6 @@
 }
 
 .header-menu-button span {
-  display: block;
-
   width: 23px;
   height: 2px;
 
@@ -332,18 +299,17 @@
   background: #244d43;
 
   border-radius: 2px;
-
-  transition:
-    transform 0.25s ease,
-    opacity 0.25s ease;
 }
+
+
+/* =========================================================
+   HAMBURGER → X
+   ========================================================= */
 
 .header.menu-open
 .header-menu-button
 span:nth-child(1) {
-  transform:
-    translateY(7px)
-    rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .header.menu-open
@@ -355,54 +321,13 @@ span:nth-child(2) {
 .header.menu-open
 .header-menu-button
 span:nth-child(3) {
-  transform:
-    translateY(-7px)
-    rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 
 /* =========================================================
-   FORCED DESKTOP VIEW
+   MOBILE VIEW
    ========================================================= */
-
-/*
- * These rules work even when the browser itself
- * is narrow because the user selected Desktop.
- */
-
-.header.view-desktop .header-center {
-  position: static;
-  display: flex;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-}
-
-.header.view-desktop .header-nav {
-  flex-direction: row;
-}
-
-.header.view-desktop .header-search {
-  width: 280px;
-}
-
-.header.view-desktop .header-search input {
-  display: block;
-}
-
-.header.view-desktop .header-menu-button {
-  display: none;
-}
-
-
-/* =========================================================
-   FORCED MOBILE VIEW
-   ========================================================= */
-
-.header.view-mobile .header-container {
-  min-height: 72px;
-}
 
 .header.view-mobile .header-center {
   position: absolute;
@@ -410,7 +335,7 @@ span:nth-child(3) {
   left: 0;
   right: 0;
 
-  top: 72px;
+  top: 78px;
 
   display: none;
 
@@ -431,7 +356,6 @@ span:nth-child(3) {
 
 .header.view-mobile .header-nav {
   flex-direction: column;
-
   gap: 20px;
 }
 
@@ -454,93 +378,68 @@ span:nth-child(3) {
   display: none;
 }
 
-.header.view-mobile .header-search-icon {
-  width: 21px;
-  height: 21px;
-}
-
 .header.view-mobile .header-menu-button {
   display: flex;
 }
 
 
 /* =========================================================
-   TABLET
+   DESKTOP VIEW
    ========================================================= */
 
-@media (max-width: 1150px) {
+.header.view-desktop .header-center {
+  position: static;
 
-  .header-container {
-    width: calc(100% - 30px);
+  display: flex;
 
-    gap: 25px;
-  }
+  padding: 0;
 
-  .header-nav {
-    gap: 25px;
-  }
+  background: transparent;
 
-  .header-nav-link {
-    font-size: 17px;
-  }
+  border: 0;
 
-  .header-search {
-    width: 220px;
-  }
+  box-shadow: none;
+}
 
-  .header-logo-text {
-    font-size: 27px;
-  }
+.header.view-desktop .header-nav {
+  flex-direction: row;
+}
 
-  .header-view-button {
-    min-width: 60px;
-    padding: 0 9px;
-  }
+.header.view-desktop .header-search {
+  width: 280px;
+}
+
+.header.view-desktop .header-search input {
+  display: block;
+}
+
+.header.view-desktop .header-menu-button {
+  display: none;
 }
 
 
 /* =========================================================
-   SMALL SCREENS
+   AUTOMATIC RESPONSIVE DEFAULT
    ========================================================= */
 
 @media (max-width: 800px) {
 
   /*
-   * The toggle remains available.
-   * Therefore the user can manually choose
-   * Desktop or Mobile.
+   * If the user has NOT selected Desktop,
+   * mobile layout is used automatically.
    */
 
-  .header-container {
-    width: calc(100% - 24px);
+  .header:not(.view-desktop) .header-container {
+    min-height: 72px;
   }
-
-  .header-logo {
-    gap: 8px;
-  }
-
-  .header-logo-icon,
-  .header-logo-icon svg {
-    width: 40px;
-    height: 40px;
-  }
-
-  .header-logo-text {
-    font-size: 23px;
-  }
-
-
-  /* Automatically make mobile layout
-     only when no manual desktop mode
-     has been selected. */
 
   .header:not(.view-desktop) .header-center {
     position: absolute;
 
+    top: 72px;
+
     left: 0;
     right: 0;
-
-    top: 72px;
 
     display: none;
 

@@ -1,10 +1,10 @@
 export default function decorate(block) {
   /* =========================
-     MAIN HEADER
+     HEADER CONTAINER
      ========================= */
 
-  const header = document.createElement('div');
-  header.className = 'header-container';
+  const headerContainer = document.createElement('div');
+  headerContainer.className = 'header-container';
 
 
   /* =========================
@@ -74,7 +74,7 @@ export default function decorate(block) {
     },
     {
       text: 'About Us',
-      href: 'https://main--eds-training-sinchanaamin--sinchana05-arch.aem.page/aboutus',
+      href: '/about-us',
     },
     {
       text: 'Contact',
@@ -140,7 +140,34 @@ export default function decorate(block) {
 
 
   /* =========================
-     MOBILE MENU BUTTON
+     VIEW TOGGLE
+     ========================= */
+
+  const viewToggle = document.createElement('div');
+  viewToggle.className = 'header-view-toggle';
+
+  const desktopButton = document.createElement('button');
+
+  desktopButton.type = 'button';
+  desktopButton.className =
+    'header-view-button header-view-desktop';
+
+  desktopButton.textContent = 'Desktop';
+
+  const mobileButton = document.createElement('button');
+
+  mobileButton.type = 'button';
+  mobileButton.className =
+    'header-view-button header-view-mobile';
+
+  mobileButton.textContent = 'Mobile';
+
+  viewToggle.appendChild(desktopButton);
+  viewToggle.appendChild(mobileButton);
+
+
+  /* =========================
+     MOBILE MENU
      ========================= */
 
   const menuButton = document.createElement('button');
@@ -166,28 +193,21 @@ export default function decorate(block) {
 
 
   /* =========================
-     MENU TOGGLE
+     MOBILE MENU CLICK
      ========================= */
 
   menuButton.addEventListener('click', () => {
-    const isOpen = header.classList.toggle('menu-open');
+    const isOpen = block.classList.toggle('menu-open');
 
     menuButton.setAttribute(
       'aria-expanded',
       String(isOpen),
     );
-
-    menuButton.setAttribute(
-      'aria-label',
-      isOpen
-        ? 'Close navigation menu'
-        : 'Open navigation menu',
-    );
   });
 
 
   /* =========================
-     SEARCH SUBMIT
+     SEARCH
      ========================= */
 
   search.addEventListener('submit', (event) => {
@@ -204,73 +224,27 @@ export default function decorate(block) {
   });
 
 
-  /* =========================================================
-     VIEW TOGGLE
-     ========================================================= */
-
-  const viewToggle = document.createElement('div');
-
-  viewToggle.className = 'header-view-toggle';
-
-  viewToggle.setAttribute(
-    'aria-label',
-    'Choose header view',
-  );
-
-
-  /* Desktop button */
-
-  const desktopButton = document.createElement('button');
-
-  desktopButton.type = 'button';
-
-  desktopButton.className =
-    'header-view-button header-view-desktop';
-
-  desktopButton.textContent = 'Desktop';
-
-  desktopButton.setAttribute(
-    'aria-label',
-    'Switch to desktop view',
-  );
-
-
-  /* Mobile button */
-
-  const mobileButton = document.createElement('button');
-
-  mobileButton.type = 'button';
-
-  mobileButton.className =
-    'header-view-button header-view-mobile';
-
-  mobileButton.textContent = 'Mobile';
-
-  mobileButton.setAttribute(
-    'aria-label',
-    'Switch to mobile view',
-  );
-
-
-  viewToggle.appendChild(desktopButton);
-  viewToggle.appendChild(mobileButton);
-
-
   /* =========================
-     VIEW FUNCTIONS
+     VIEW CHANGE
      ========================= */
 
-  const setView = (view) => {
-    header.classList.remove(
+  function setView(view) {
+    /* Remove previous view */
+
+    block.classList.remove(
       'view-desktop',
       'view-mobile',
     );
 
-    header.classList.add(
+    /* Add selected view */
+
+    block.classList.add(
       view === 'mobile'
         ? 'view-mobile'
         : 'view-desktop',
     );
+
+    /* Active button */
 
     desktopButton.classList.toggle(
       'active',
@@ -282,6 +256,8 @@ export default function decorate(block) {
       view === 'mobile',
     );
 
+    /* Accessibility */
+
     desktopButton.setAttribute(
       'aria-pressed',
       String(view === 'desktop'),
@@ -292,20 +268,22 @@ export default function decorate(block) {
       String(view === 'mobile'),
     );
 
+    /* Save preference */
+
     localStorage.setItem(
       'recipeFinderHeaderView',
       view,
     );
 
-    /* Close mobile menu when changing view */
+    /* Close menu */
 
-    header.classList.remove('menu-open');
+    block.classList.remove('menu-open');
 
     menuButton.setAttribute(
       'aria-expanded',
       'false',
     );
-  };
+  }
 
 
   /* =========================
@@ -336,7 +314,10 @@ export default function decorate(block) {
       'recipeFinderHeaderView',
     );
 
-  if (savedView === 'desktop' || savedView === 'mobile') {
+  if (
+    savedView === 'desktop' ||
+    savedView === 'mobile'
+  ) {
     setView(savedView);
   } else {
     setView(
@@ -375,11 +356,10 @@ export default function decorate(block) {
      BUILD HEADER
      ========================= */
 
-  header.appendChild(left);
-  header.appendChild(center);
-  header.appendChild(right);
+  headerContainer.appendChild(left);
+  headerContainer.appendChild(center);
+  headerContainer.appendChild(right);
 
   block.innerHTML = '';
-
-  block.appendChild(header);
+  block.appendChild(headerContainer);
 }
