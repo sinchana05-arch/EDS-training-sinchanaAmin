@@ -6,7 +6,6 @@
   width: 100%;
   margin: 0;
   padding: 0;
-
   box-sizing: border-box;
 }
 
@@ -19,7 +18,6 @@
   position: relative;
 
   width: 100%;
-
   height: 520px;
 
   overflow: hidden;
@@ -58,34 +56,24 @@
 
   max-width: none;
 
-  object-fit: cover;
-
-  object-position: center;
-
   margin: 0;
+
+  object-fit: cover;
+  object-position: center;
 }
 
 
 /* =========================================================
-   LEFT SIDE DARK / LIGHT OVERLAY
+   NO IMAGE OVERLAY
    ========================================================= */
 
+/*
+ * The image is intentionally kept completely clear.
+ * No blur, white fade, dark gradient, or overlay.
+ */
+
 .hero-overlay {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 1;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(255, 255, 255, 0.82) 18%,
-      rgba(255, 255, 255, 0.48) 35%,
-      rgba(255, 255, 255, 0.05) 58%,
-      rgba(255, 255, 255, 0) 75%
-    );
+  display: none;
 }
 
 
@@ -131,6 +119,9 @@
   text-transform: uppercase;
 }
 
+
+/* Support h2 if your authoring uses h2 */
+
 .hero-content h2 {
   margin: 0 0 18px;
 
@@ -149,7 +140,7 @@
 
 
 /* =========================================================
-   DESCRIPTION
+   HERO DESCRIPTION
    ========================================================= */
 
 .hero-content p {
@@ -163,7 +154,7 @@
 
   font-size: 19px;
 
-  line-height: 1.35;
+  line-height: 1.4;
 
   font-weight: 400;
 }
@@ -185,9 +176,9 @@
 
   color: #ffffff;
 
-  border-radius: 6px;
-
   border: none;
+
+  border-radius: 6px;
 
   font-family: Arial, sans-serif;
 
@@ -229,9 +220,12 @@ body.view-desktop .hero-wrapper {
 }
 
 body.view-desktop .hero-content {
+  top: 50%;
   left: 7%;
 
   width: 430px;
+
+  transform: translateY(-50%);
 }
 
 body.view-desktop .hero-content h1 {
@@ -251,19 +245,8 @@ body.view-mobile .hero-wrapper {
   height: 480px;
 }
 
-body.view-mobile .hero-overlay {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(255, 255, 255, 0.78) 30%,
-      rgba(255, 255, 255, 0.20) 58%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-}
-
 body.view-mobile .hero-content {
-  top: 35px;
+  top: 30px;
   left: 25px;
 
   width: calc(100% - 50px);
@@ -272,8 +255,6 @@ body.view-mobile .hero-content {
 }
 
 body.view-mobile .hero-content h1 {
-  margin-bottom: 14px;
-
   font-size: 34px;
 
   line-height: 1.05;
@@ -286,11 +267,11 @@ body.view-mobile .hero-content h2 {
 body.view-mobile .hero-content p {
   max-width: 330px;
 
-  margin-bottom: 20px;
-
   font-size: 16px;
 
   line-height: 1.4;
+
+  margin-bottom: 20px;
 }
 
 body.view-mobile .hero-content a {
@@ -320,8 +301,16 @@ body.view-mobile .hero-content a {
     font-size: 40px;
   }
 
+  .hero-content h2 {
+    font-size: 34px;
+  }
+
   .hero-content p {
     font-size: 17px;
+  }
+
+  .hero-content a {
+    padding: 12px 24px;
   }
 }
 
@@ -337,18 +326,11 @@ body.view-mobile .hero-content a {
   }
 
   .hero-image img {
-    object-position: center;
-  }
+    width: 100%;
+    height: 100%;
 
-  .hero-overlay {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.94) 0%,
-        rgba(255, 255, 255, 0.80) 35%,
-        rgba(255, 255, 255, 0.18) 65%,
-        rgba(0, 0, 0, 0.08) 100%
-      );
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-content {
@@ -362,6 +344,8 @@ body.view-mobile .hero-content a {
   }
 
   .hero-content h1 {
+    margin-bottom: 14px;
+
     font-size: 32px;
 
     line-height: 1.05;
@@ -369,10 +353,14 @@ body.view-mobile .hero-content a {
 
   .hero-content h2 {
     font-size: 28px;
+
+    line-height: 1.1;
   }
 
   .hero-content p {
     max-width: 300px;
+
+    margin-bottom: 20px;
 
     font-size: 15px;
 
@@ -399,6 +387,7 @@ body.view-mobile .hero-content a {
 
   .hero-content {
     top: 24px;
+
     left: 18px;
 
     width: calc(100% - 36px);
@@ -406,6 +395,8 @@ body.view-mobile .hero-content a {
 
   .hero-content h1 {
     font-size: 28px;
+
+    line-height: 1.05;
   }
 
   .hero-content h2 {
@@ -417,4 +408,20 @@ body.view-mobile .hero-content a {
 
     font-size: 14px;
   }
+
+  .hero-content a {
+    padding: 10px 18px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.hero-content a:focus-visible {
+  outline: 3px solid #a7c76a;
+  outline-offset: 3px;
 }
