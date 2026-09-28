@@ -1,82 +1,35 @@
 export default function decorate(block) {
-  /*
-   * ============================================
-   * HEADER CONTAINER
-   * ============================================
-   */
+  /* =========================================================
+     HEADER CONTAINER
+     ========================================================= */
 
   const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
 
-  /*
-   * ============================================
-   * LOGO
-   * ============================================
-   */
+  /* =========================================================
+     LOGO
+     ========================================================= */
 
   const logo = document.createElement('a');
+
   logo.className = 'header-logo';
   logo.href = '/';
   logo.setAttribute('aria-label', 'Recipe Finder Home');
 
-  /*
-   * Leaf icon
-   */
+  const logoImage = document.createElement('img');
 
-  const logoIcon = document.createElement('span');
-  logoIcon.className = 'header-logo-icon';
+  logoImage.className = 'header-logo-image';
+  logoImage.src = '/icons/recipe-finder-logo.png';
+  logoImage.alt = 'Recipe Finder';
 
-  logoIcon.innerHTML = `
-    <svg
-      viewBox="0 0 60 60"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        class="leaf-shape"
-        d="M12 43C10 27 17 12 43 7C47 29 37 47 19 51C16 49 14 46 12 43Z"
-      ></path>
+  logo.appendChild(logoImage);
 
-      <path
-        class="leaf-line"
-        d="M14 48C23 38 31 28 39 17"
-      ></path>
-
-      <path
-        class="leaf-line"
-        d="M22 38L18 27"
-      ></path>
-
-      <path
-        class="leaf-line"
-        d="M27 32L39 31"
-      ></path>
-
-      <path
-        class="leaf-line"
-        d="M32 25L29 17"
-      ></path>
-    </svg>
-  `;
-
-  /*
-   * Logo text
-   */
-
-  const logoText = document.createElement('span');
-  logoText.className = 'header-logo-text';
-  logoText.textContent = 'Recipe Finder';
-
-  logo.appendChild(logoIcon);
-  logo.appendChild(logoText);
-
-  /*
-   * ============================================
-   * NAVIGATION
-   * ============================================
-   */
+  /* =========================================================
+     NAVIGATION
+     ========================================================= */
 
   const nav = document.createElement('nav');
+
   nav.className = 'header-nav';
   nav.setAttribute('aria-label', 'Main navigation');
 
@@ -106,14 +59,22 @@ export default function decorate(block) {
     link.href = item.href;
     link.textContent = item.text;
 
+    const currentPath =
+      window.location.pathname.replace(/\/$/, '') || '/';
+
+    const linkPath =
+      item.href.replace(/\/$/, '') || '/';
+
+    if (currentPath === linkPath) {
+      link.classList.add('active');
+    }
+
     nav.appendChild(link);
   });
 
-  /*
-   * ============================================
-   * MOBILE MENU BUTTON
-   * ============================================
-   */
+  /* =========================================================
+     MOBILE MENU BUTTON
+     ========================================================= */
 
   const menuButton = document.createElement('button');
 
@@ -135,11 +96,9 @@ export default function decorate(block) {
     </svg>
   `;
 
-  /*
-   * ============================================
-   * MOBILE MENU FUNCTIONALITY
-   * ============================================
-   */
+  /* =========================================================
+     MOBILE MENU TOGGLE
+     ========================================================= */
 
   menuButton.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('mobile-menu-open');
@@ -153,10 +112,6 @@ export default function decorate(block) {
       'aria-label',
       isOpen ? 'Close menu' : 'Open menu',
     );
-
-    /*
-     * Change hamburger icon to X
-     */
 
     if (isOpen) {
       menuButton.innerHTML = `
@@ -184,25 +139,16 @@ export default function decorate(block) {
     }
   });
 
-  /*
-   * ============================================
-   * CLOSE MOBILE MENU AFTER CLICKING A LINK
-   * ============================================
-   */
+  /* =========================================================
+     CLOSE MOBILE MENU AFTER CLICKING A LINK
+     ========================================================= */
 
   nav.querySelectorAll('.header-nav-link').forEach((link) => {
     link.addEventListener('click', () => {
       nav.classList.remove('mobile-menu-open');
 
-      menuButton.setAttribute(
-        'aria-expanded',
-        'false',
-      );
-
-      menuButton.setAttribute(
-        'aria-label',
-        'Open menu',
-      );
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
 
       menuButton.innerHTML = `
         <svg
@@ -218,25 +164,14 @@ export default function decorate(block) {
     });
   });
 
-  /*
-   * ============================================
-   * BUILD HEADER
-   * ============================================
-   */
+  /* =========================================================
+     ADD ELEMENTS
+     ========================================================= */
 
   headerContainer.appendChild(logo);
   headerContainer.appendChild(nav);
   headerContainer.appendChild(menuButton);
 
-  /*
-   * Remove existing block content
-   */
-
   block.innerHTML = '';
-
-  /*
-   * Add new header
-   */
-
   block.appendChild(headerContainer);
 }
