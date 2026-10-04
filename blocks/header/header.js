@@ -1,89 +1,35 @@
+import { getMetadata } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';
 
-export default function decorate(block) {
-  // Header container
-  const container = document.createElement('div');
-  container.className = 'header-container';
+export default async function decorate(block) {
+  // Load nav as fragment from metadata
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const fragment = await loadFragment(navPath);
 
-  // Logo
-  const logo = document.createElement('a');
-  logo.className = 'header-logo';
-  logo.href = '/';
-  logo.setAttribute('aria-label', 'Recipe Finder Home');
-
-  const logoImage = document.createElement('img');
-  logoImage.className = 'header-logo-image';
-  logoImage.src = '/icons/recipe-finder-logo.png';
-  logoImage.alt = 'Recipe Finder';
-
-  logo.appendChild(logoImage);
-
-  // Navigation
+  block.textContent = '';
   const nav = document.createElement('nav');
-  nav.className = 'header-nav';
-  nav.setAttribute('aria-label', 'Main navigation');
+  nav.id = 'nav';
+  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const navItems = [
-    { text: 'Home', href: '/' },
-    { text: 'Recipes', href: '/recipes' },
-    { text: 'About Us', href: '/about-us' },
-    { text: 'Contact', href: '/contact' },
-  ];
-
-  const currentPath =
-    window.location.pathname.replace(/\/$/, '') || '/';
-
-  navItems.forEach(({ text, href }) => {
-    const link = document.createElement('a');
-    link.className = 'header-nav-link';
-    link.href = href;
-    link.textContent = text;
-
-    const linkPath = href.replace(/\/$/, '') || '/';
-
-    if (currentPath === linkPath) {
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'page');
-    }
-
-    nav.appendChild(link);
+  // Setup structural classes based on standard EDS conventions
+  const classes = ['brand', 'sections', 'tools'];
+  classes.forEach((c, i) => {
+    const section = nav.children[i];
+    if (section) section.classList.add(`nav-${c}`);
   });
 
-  // Mobile menu button
-  const menuButton = document.createElement('button');
-  menuButton.type = 'button';
-  menuButton.className = 'header-menu-button';
-  menuButton.setAttribute('aria-label', 'Open menu');
-  menuButton.setAttribute('aria-expanded', 'false');
-
-  const renderMenuIcon = (isOpen) => {
-    menuButton.innerHTML = isOpen
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19"/></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H20"/></svg>';
-
-    menuButton.setAttribute(
-      'aria-label',
-      isOpen ? 'Close menu' : 'Open menu',
-    );
-
-    menuButton.setAttribute('aria-expanded', String(isOpen));
-  };
-
-  renderMenuIcon(false);
-
-  menuButton.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('mobile-menu-open');
-    renderMenuIcon(isOpen);
-  });
-
-  nav.querySelectorAll('.header-nav-link').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('mobile-menu-open');
-      renderMenuIcon(false);
+  // Optional: Automatically mark the current page link as active
+  const currentPath = window.location.pathname;
+  const navSections = nav.querySelector('.nav-sections');
+  if (navSections) {
+    navSections.querySelectorAll('a').forEach((a) => {
+      if (new URL(a.href, window.location).pathname === currentPath) {
+        a.setAttribute('aria-current', 'page');
+        a.closest('li').classList.add('active');
+      }
     });
-  });
+  }
 
-  // Assemble header
-  container.append(logo, nav, menuButton);
-
-  block.replaceChildren(container);
+  block.append(nav);
 }
