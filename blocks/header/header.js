@@ -1,7 +1,8 @@
 
 export default function decorate(block) {
-  const headerContainer = document.createElement('div');
-  headerContainer.className = 'header-container';
+  // Header container
+  const container = document.createElement('div');
+  container.className = 'header-container';
 
   // Logo
   const logo = document.createElement('a');
@@ -54,7 +55,7 @@ export default function decorate(block) {
   menuButton.setAttribute('aria-label', 'Open menu');
   menuButton.setAttribute('aria-expanded', 'false');
 
-  const setMenuIcon = (isOpen) => {
+  const renderMenuIcon = (isOpen) => {
     menuButton.innerHTML = isOpen
       ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19"/></svg>'
       : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H20"/></svg>';
@@ -67,21 +68,22 @@ export default function decorate(block) {
     menuButton.setAttribute('aria-expanded', String(isOpen));
   };
 
-  setMenuIcon(false);
+  renderMenuIcon(false);
 
   menuButton.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('mobile-menu-open');
-    setMenuIcon(isOpen);
+    renderMenuIcon(isOpen);
   });
 
   nav.querySelectorAll('.header-nav-link').forEach((link) => {
     link.addEventListener('click', () => {
       nav.classList.remove('mobile-menu-open');
-      setMenuIcon(false);
+      renderMenuIcon(false);
     });
   });
 
-  headerContainer.append(logo, nav, menuButton);
+  // Assemble header
+  container.append(logo, nav, menuButton);
 
-  block.replaceChildren(headerContainer);
+  block.replaceChildren(container);
 }

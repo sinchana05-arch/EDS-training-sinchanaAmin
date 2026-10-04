@@ -7,7 +7,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  background: #f3f6e8;
+  background-color: #f3f6e8;
   box-sizing: border-box;
 }
 
@@ -16,9 +16,9 @@
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 260px;
+  min-height: 180px;
   padding: 0 55px;
-  background: #f3f6e8;
+  background-color: #f3f6e8;
   box-sizing: border-box;
 }
 
@@ -29,10 +29,11 @@
 .header-logo {
   display: flex;
   align-items: center;
-  flex: 0 0 570px;
-  width: 570px;
-  height: 240px;
+  flex: 0 0 520px;
+  width: 520px;
+  height: 165px;
   overflow: hidden;
+  background-color: #f3f6e8;
   text-decoration: none;
 }
 
@@ -42,9 +43,11 @@
   height: 100%;
   max-width: none;
   margin: 0;
+  padding: 0;
+  background-color: #f3f6e8;
+  border: none;
   object-fit: contain;
   object-position: left center;
-  border: 0;
 }
 
 /* ========================================
@@ -55,9 +58,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(35px, 5vw, 100px);
+  gap: clamp(30px, 4.5vw, 90px);
   height: 100%;
   margin-left: auto;
+  background-color: #f3f6e8;
 }
 
 .header-nav-link {
@@ -67,7 +71,7 @@
   padding: 15px 0;
   color: #40574f;
   font-family: Arial, sans-serif;
-  font-size: clamp(18px, 1.95vw, 40px);
+  font-size: clamp(18px, 1.9vw, 38px);
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
@@ -84,23 +88,22 @@
   font-weight: 600;
 }
 
+/* Active and hover underline */
+
 .header-nav-link::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 0;
-  height: 5px;
-  background: #719b32;
-  border-radius: 2px;
+  height: 4px;
+  background-color: #719b32;
+  border-radius: 3px;
   transition: width 0.25s ease;
 }
 
-.header-nav-link.active::after {
-  width: 100%;
-}
-
-.header-nav-link:not(.active):hover::after {
+.header-nav-link.active::after,
+.header-nav-link:hover::after {
   width: 100%;
 }
 
@@ -118,7 +121,7 @@
   flex-shrink: 0;
   color: #244d43;
   background: transparent;
-  border: 0;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -134,9 +137,15 @@
   stroke-linejoin: round;
 }
 
-.header-menu-button:focus-visible,
+.header-menu-button:hover {
+  background-color: rgba(113, 155, 50, 0.08);
+}
+
+/* Keyboard accessibility */
+
 .header-logo:focus-visible,
-.header-nav-link:focus-visible {
+.header-nav-link:focus-visible,
+.header-menu-button:focus-visible {
   outline: 3px solid #a7c76a;
   outline-offset: 4px;
 }
@@ -147,26 +156,22 @@
 
 @media (max-width: 1450px) {
   .header-container {
-    min-height: 180px;
+    min-height: 150px;
     padding: 0 35px;
   }
 
   .header-logo {
-    flex-basis: 440px;
-    width: 440px;
-    height: 165px;
+    flex-basis: 420px;
+    width: 420px;
+    height: 140px;
   }
 
   .header-nav {
-    gap: clamp(25px, 3.4vw, 55px);
+    gap: clamp(25px, 3.5vw, 55px);
   }
 
   .header-nav-link {
     font-size: clamp(17px, 1.5vw, 24px);
-  }
-
-  .header-nav-link::after {
-    height: 4px;
   }
 }
 
@@ -176,18 +181,18 @@
 
 @media (max-width: 1000px) {
   .header-container {
-    min-height: 130px;
+    min-height: 110px;
     padding: 0 24px;
   }
 
   .header-logo {
-    flex-basis: 330px;
-    width: 330px;
-    height: 120px;
+    flex-basis: 300px;
+    width: 300px;
+    height: 100px;
   }
 
   .header-nav {
-    gap: 24px;
+    gap: 22px;
   }
 
   .header-nav-link {
@@ -212,10 +217,6 @@
     height: 72px;
   }
 
-  .header-logo-image {
-    object-position: left center;
-  }
-
   .header-menu-button {
     display: flex;
   }
@@ -234,7 +235,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: #f3f6e8;
+    background-color: #f3f6e8;
     border-top: 1px solid #e1e6d9;
     box-shadow: 0 8px 20px rgba(36, 77, 67, 0.1);
     box-sizing: border-box;
@@ -253,7 +254,7 @@
   }
 
   .header-nav-link:last-child {
-    border-bottom: 0;
+    border-bottom: none;
   }
 
   .header-nav-link::after {
@@ -261,14 +262,21 @@
   }
 }
 
+/* Small mobile screens */
+
 @media (max-width: 380px) {
   .header-container {
     padding: 0 10px;
   }
 
   .header-logo {
-    flex-basis: 215px;
-    width: 215px;
+    flex-basis: 210px;
+    width: 210px;
     height: 65px;
+  }
+
+  .header-menu-button {
+    width: 40px;
+    height: 40px;
   }
 }
