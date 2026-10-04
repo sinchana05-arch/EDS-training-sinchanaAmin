@@ -1,177 +1,87 @@
-export default function decorate(block) {
-  /* =========================================================
-     HEADER CONTAINER
-     ========================================================= */
 
+export default function decorate(block) {
   const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
 
-  /* =========================================================
-     LOGO
-     ========================================================= */
-
+  // Logo
   const logo = document.createElement('a');
-
   logo.className = 'header-logo';
   logo.href = '/';
   logo.setAttribute('aria-label', 'Recipe Finder Home');
 
   const logoImage = document.createElement('img');
-
   logoImage.className = 'header-logo-image';
   logoImage.src = '/icons/recipe-finder-logo.png';
   logoImage.alt = 'Recipe Finder';
 
   logo.appendChild(logoImage);
 
-  /* =========================================================
-     NAVIGATION
-     ========================================================= */
-
+  // Navigation
   const nav = document.createElement('nav');
-
   nav.className = 'header-nav';
   nav.setAttribute('aria-label', 'Main navigation');
 
   const navItems = [
-    {
-      text: 'Home',
-      href: '/',
-    },
-    {
-      text: 'Recipes',
-      href: '/recipes',
-    },
-    {
-      text: 'About Us',
-      href: '/about-us',
-    },
-    {
-      text: 'Contact',
-      href: '/contact',
-    },
+    { text: 'Home', href: '/' },
+    { text: 'Recipes', href: '/recipes' },
+    { text: 'About Us', href: '/about-us' },
+    { text: 'Contact', href: '/contact' },
   ];
 
-  navItems.forEach((item) => {
+  const currentPath =
+    window.location.pathname.replace(/\/$/, '') || '/';
+
+  navItems.forEach(({ text, href }) => {
     const link = document.createElement('a');
-
     link.className = 'header-nav-link';
-    link.href = item.href;
-    link.textContent = item.text;
+    link.href = href;
+    link.textContent = text;
 
-    const currentPath =
-      window.location.pathname.replace(/\/$/, '') || '/';
-
-    const linkPath =
-      item.href.replace(/\/$/, '') || '/';
+    const linkPath = href.replace(/\/$/, '') || '/';
 
     if (currentPath === linkPath) {
       link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
     }
 
     nav.appendChild(link);
   });
 
-  /* =========================================================
-     MOBILE MENU BUTTON
-     ========================================================= */
-
+  // Mobile menu button
   const menuButton = document.createElement('button');
-
   menuButton.type = 'button';
   menuButton.className = 'header-menu-button';
-
   menuButton.setAttribute('aria-label', 'Open menu');
   menuButton.setAttribute('aria-expanded', 'false');
 
-  menuButton.innerHTML = `
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M4 6H20"></path>
-      <path d="M4 12H20"></path>
-      <path d="M4 18H20"></path>
-    </svg>
-  `;
-
-  /* =========================================================
-     MOBILE MENU TOGGLE
-     ========================================================= */
-
-  menuButton.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('mobile-menu-open');
-
-    menuButton.setAttribute(
-      'aria-expanded',
-      isOpen ? 'true' : 'false',
-    );
+  const setMenuIcon = (isOpen) => {
+    menuButton.innerHTML = isOpen
+      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19"/></svg>'
+      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6H20M4 12H20M4 18H20"/></svg>';
 
     menuButton.setAttribute(
       'aria-label',
       isOpen ? 'Close menu' : 'Open menu',
     );
 
-    if (isOpen) {
-      menuButton.innerHTML = `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path d="M5 5L19 19"></path>
-          <path d="M19 5L5 19"></path>
-        </svg>
-      `;
-    } else {
-      menuButton.innerHTML = `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path d="M4 6H20"></path>
-          <path d="M4 12H20"></path>
-          <path d="M4 18H20"></path>
-        </svg>
-      `;
-    }
-  });
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+  };
 
-  /* =========================================================
-     CLOSE MOBILE MENU AFTER CLICKING A LINK
-     ========================================================= */
+  setMenuIcon(false);
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('mobile-menu-open');
+    setMenuIcon(isOpen);
+  });
 
   nav.querySelectorAll('.header-nav-link').forEach((link) => {
     link.addEventListener('click', () => {
       nav.classList.remove('mobile-menu-open');
-
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.setAttribute('aria-label', 'Open menu');
-
-      menuButton.innerHTML = `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path d="M4 6H20"></path>
-          <path d="M4 12H20"></path>
-          <path d="M4 18H20"></path>
-        </svg>
-      `;
+      setMenuIcon(false);
     });
   });
 
-  /* =========================================================
-     ADD ELEMENTS
-     ========================================================= */
+  headerContainer.append(logo, nav, menuButton);
 
-  headerContainer.appendChild(logo);
-  headerContainer.appendChild(nav);
-  headerContainer.appendChild(menuButton);
-
-  block.innerHTML = '';
-  block.appendChild(headerContainer);
+  block.replaceChildren(headerContainer);
 }
